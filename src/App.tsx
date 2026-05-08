@@ -19,7 +19,9 @@ import {
   Github,
   Menu,
   X,
-  MessageSquare
+  MessageSquare,
+  Send,
+  ExternalLink
 } from 'lucide-react';
 import ProjectCard from './components/ProjectCard';
 import ThemeToggle from './components/ThemeToggle';
@@ -161,6 +163,7 @@ const PROJECTS_DATA = [
     id: "cv",
     title: "Capoeira Vienna",
     url: "https://capoeiravienna.vercel.app",
+    isBlocked: true,
     tech: ["React", "Community-Logic", "Media-Optimization"],
     gradient: "bg-green-600",
     de: {
@@ -186,6 +189,7 @@ const PROJECTS_DATA = [
     id: "ts",
     title: "Paumann Service-UX",
     url: "https://paumann.vercel.app",
+    isBlocked: true,
     tech: ["React", "Logic-Verification", "UX-Audit"],
     gradient: "bg-red-500",
     de: {
@@ -211,6 +215,7 @@ const PROJECTS_DATA = [
     id: "ttl",
     title: "Triny Three Logic",
     url: "https://triny-three.vercel.app",
+    isBlocked: true,
     tech: ["Three.js", "Zustand", "State-Machines"],
     gradient: "bg-orange-500",
     de: {
@@ -236,6 +241,7 @@ const PROJECTS_DATA = [
     id: "c54",
     title: "Cumberland 54 Minimax",
     url: "https://cumberland54minimax.vercel.app",
+    isBlocked: true,
     tech: ["Data-Logic", "React", "Filtering-QA"],
     gradient: "bg-yellow-500",
     de: {
@@ -288,6 +294,7 @@ export default function App() {
   const [lang, setLang] = useState<'de' | 'en'>('de');
   const [cvMode, setCvMode] = useState<'short' | 'pdf'>('short');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [waMessage, setWaMessage] = useState("");
   const t = translations[lang];
 
   // Helper for logging to AuditTerminal
@@ -480,46 +487,98 @@ export default function App() {
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.3 }}
-            className="hidden lg:block w-72"
+            className="hidden lg:block w-80"
           >
-            <div className="p-6 rounded-[2rem] border border-zinc-200 dark:border-white/10 bg-white/50 dark:bg-white/5 backdrop-blur-xl relative overflow-hidden group">
-              <div className="absolute -right-4 -top-4 h-24 w-24 rounded-full bg-brand-green/10 blur-2xl group-hover:bg-brand-green/20 transition-colors" />
+            <div className="p-7 rounded-[2.5rem] border border-zinc-200 dark:border-white/10 bg-white/70 dark:bg-zinc-900/40 backdrop-blur-3xl relative overflow-hidden group shadow-2xl shadow-zinc-400/10 dark:shadow-none">
+              <div className="absolute -right-4 -top-4 h-32 w-32 rounded-full bg-brand-green/10 blur-3xl group-hover:bg-brand-green/20 transition-all duration-700" />
               
-              <div className="flex items-center gap-4 mb-6">
-                <div className="h-12 w-12 rounded-2xl bg-brand-green flex items-center justify-center text-black shadow-lg shadow-brand-green/20">
+              <div className="flex items-center gap-4 mb-6 relative z-10">
+                <div className="h-14 w-14 rounded-2xl bg-brand-green flex items-center justify-center text-black shadow-lg shadow-brand-green/20 group-hover:scale-110 transition-transform">
                   <motion.div
                     animate={{ scale: [1, 1.1, 1] }}
-                    transition={{ duration: 2, repeat: Infinity }}
+                    transition={{ duration: 3, repeat: Infinity }}
                   >
-                    <MessageSquare size={24} />
+                    <MessageSquare size={28} />
                   </motion.div>
                 </div>
                 <div>
-                  <h4 className="text-[11px] font-bold text-zinc-900 dark:text-white uppercase tracking-[0.2em]">{t.contact.wa.title}</h4>
-                  <div className="flex items-center gap-1.5 mt-1">
-                    <div className="h-1.5 w-1.5 rounded-full bg-brand-green animate-pulse" />
-                    <span className="text-[9px] text-zinc-500 font-mono italic">{t.contact.wa.status}</span>
+                  <h4 className="text-[12px] font-bold text-zinc-900 dark:text-white uppercase tracking-[0.2em] mb-1">{t.contact.wa.title}</h4>
+                  <div className="flex items-center gap-1.5">
+                    <div className="h-2 w-2 rounded-full bg-brand-green animate-pulse" />
+                    <span className="text-[10px] text-zinc-500 font-mono italic font-medium">{t.contact.wa.status}</span>
                   </div>
                 </div>
               </div>
 
-              <div className="space-y-3">
-                 <p className="text-[10px] text-zinc-500 leading-relaxed italic">
-                   "{t.hero.contactTeaser || (lang === 'de' ? 'Direkter Draht für Audits & strategische Anfragen.' : 'Direct line for audits & strategic inquiries.')}"
+                   <div className="space-y-4 relative z-10">
+                 <p className="text-[11px] text-zinc-500 leading-relaxed italic opacity-80 border-l-2 border-brand-green/30 pl-3">
+                   "{lang === 'de' ? 'Lockerer Entwickler, Auditor-Hirn. Schreib mir!' : 'Chilled developer, auditor brain. Let\'s chat!'}"
                  </p>
-                 <button 
-                  onClick={() => {
-                    window.dispatchEvent(new CustomEvent('portfolio-log', {
-                      detail: { message: "Header WhatsApp entry initiated", type: 'UI' }
-                    }));
-                    // Open the WhatsApp link directly with the default message
-                    const msg = lang === 'de' ? "Hallo Petar, ich würde gerne über ein Projekt sprechen!" : "Hi Petar, I would love to chat about a project!";
-                    window.open(`https://wa.me/436508278461?text=${encodeURIComponent(msg)}`, '_blank');
-                  }}
-                  className="w-full py-4 rounded-2xl bg-zinc-900 dark:bg-white text-white dark:text-black text-xs font-bold uppercase tracking-widest hover:scale-[1.02] transition-all cursor-pointer shadow-xl active:scale-95"
-                 >
-                   {lang === 'de' ? 'Chat Starten' : 'Start Chat'}
-                 </button>
+                 
+                 <div className="pt-2">
+                   <div className="flex flex-col gap-2 mb-4">
+                     {[
+                       lang === 'de' ? "Projekt-Audit anfragen" : "Request Project Audit",
+                       lang === 'de' ? "Kaffee / Kennenlernen ☕" : "Coffee / Catch-up ☕",
+                       lang === 'de' ? "Komm für uns arbeiten! 🚀" : "Come work for us! 🚀",
+                       lang === 'de' ? "Einfach mal Hallo sagen" : "Just saying hello"
+                     ].map((preset) => (
+                       <button
+                         key={preset}
+                         onClick={() => {
+                           const baseMsg = lang === 'de' 
+                             ? `Servus Petar! Ich melde mich wegen: ${preset}. ` 
+                             : `Hey Petar! Reaching out about: ${preset}. `;
+                           setWaMessage(baseMsg);
+                           logToTerminal(`Topic selected: ${preset}`, "UI");
+                           // Focus the textarea
+                           document.getElementById('header-wa-text')?.focus();
+                         }}
+                         className="w-full py-2.5 px-4 rounded-xl bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10 text-[10px] font-bold uppercase tracking-widest text-zinc-600 dark:text-zinc-400 hover:bg-brand-green/10 hover:text-brand-green hover:border-brand-green/30 transition-all text-left flex items-center justify-between group/p"
+                       >
+                         {preset}
+                         <ArrowRight size={12} className="opacity-0 group-hover/p:opacity-100 group-hover/p:translate-x-1 transition-all" />
+                       </button>
+                     ))}
+                   </div>
+                   
+                   <div className="relative mb-4 bg-zinc-100 dark:bg-black/20 rounded-xl p-3 border border-zinc-200 dark:border-white/5 transition-all focus-within:border-brand-green/50 focus-within:ring-1 focus-within:ring-brand-green/20">
+                     <textarea 
+                       placeholder={lang === 'de' ? "Tippen Sie hier etwas..." : "Type something here..."}
+                       className="w-full h-24 bg-transparent text-[11px] resize-none focus:outline-none dark:text-zinc-300 font-mono leading-relaxed"
+                       value={waMessage}
+                       onChange={(e) => setWaMessage(e.target.value)}
+                       id="header-wa-text"
+                     />
+                     <button 
+                       onClick={() => {
+                         if (waMessage.trim().length < 5) return;
+                         window.open(`https://wa.me/436508278461?text=${encodeURIComponent(waMessage)}`, '_blank');
+                         logToTerminal("WhatsApp Audit-Request dispatched", "UI");
+                       }}
+                       disabled={waMessage.trim().length < 5}
+                       className={cn(
+                         "absolute bottom-3 right-3 p-2.5 rounded-xl transition-all duration-500 active:scale-95",
+                         waMessage.trim().length >= 5 
+                           ? "bg-brand-green text-black shadow-[0_0_20px_rgba(34,197,94,0.3)] hover:scale-110" 
+                           : "bg-zinc-200 dark:bg-white/5 text-zinc-400 cursor-not-allowed opacity-50"
+                       )}
+                     >
+                       <Send size={16} />
+                     </button>
+                   </div>
+
+                   <button 
+                    onClick={() => {
+                      logToTerminal("Header WhatsApp interaction: BUBBLE_TRIGGER", "UI");
+                      window.dispatchEvent(new CustomEvent('open-whatsapp-chat', { detail: { message: waMessage } }));
+                    }}
+                    className="w-full py-3.5 rounded-2xl bg-zinc-900 dark:bg-white text-white dark:text-black text-[10px] font-bold uppercase tracking-widest hover:scale-[1.02] transition-all cursor-pointer shadow-xl active:scale-95 flex items-center justify-center gap-2"
+                   >
+                     <Zap size={14} className="text-brand-green" />
+                     {lang === 'de' ? 'Vollbildmodus' : 'Full Chat View'}
+                   </button>
+                 </div>
               </div>
             </div>
           </motion.div>
@@ -705,20 +764,36 @@ export default function App() {
             {PROJECTS_DATA.map((p) => {
               const content = lang === 'de' ? p.de : p.en;
               return (
-                <ProjectCard 
-                  key={p.id}
-                  title={p.title}
-                  description={content.description}
-                  url={p.url}
-                  tech={p.tech}
-                  gradient={p.gradient}
-                  highlights={content.highlights}
-                  challenges={content.challenges}
-                  labels={{
-                    highlights: t.projects.highlights,
-                    challenge: t.projects.challenges
-                  }}
-                />
+                <div key={p.id} className="flex flex-col gap-4">
+                  <ProjectCard 
+                    title={p.title}
+                    description={content.description}
+                    url={p.url}
+                    isBlocked={p.isBlocked}
+                    tech={p.tech}
+                    gradient={p.gradient}
+                    highlights={content.highlights}
+                    challenges={content.challenges}
+                    labels={{
+                      highlights: t.projects.highlights,
+                      challenge: t.projects.challenges
+                    }}
+                  />
+                  <a 
+                    href={p.url} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="flex justify-between items-center px-6 py-3 rounded-2xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-white/10 hover:border-brand-green transition-all group shadow-lg shadow-black/5"
+                  >
+                    <span className="text-[10px] font-mono text-zinc-400 group-hover:text-brand-green transition-colors truncate">
+                      {p.url.replace('https://', '')}
+                    </span>
+                    <div className="flex items-center gap-2 text-brand-green">
+                      <span className="text-[10px] font-bold uppercase tracking-widest">{lang === 'de' ? 'Live Projekt' : 'Live Site'}</span>
+                      <ExternalLink size={14} className="group-hover:translate-x-1 transition-transform" />
+                    </div>
+                  </a>
+                </div>
               );
             })}
           </div>

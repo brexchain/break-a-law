@@ -33,6 +33,17 @@ const FloatingWhatsApp: React.FC<FloatingWhatsAppProps> = ({ phoneNumber, labels
   const isGerman = labels.title === "Direkter Zugang";
   const presets = isGerman ? PRESETS_DE : PRESETS_EN;
 
+  useEffect(() => {
+    const handleRemoteOpen = (e: any) => {
+      setIsOpen(true);
+      if (e.detail?.message) {
+        setMessage(e.detail.message);
+      }
+    };
+    window.addEventListener('open-whatsapp-chat', handleRemoteOpen);
+    return () => window.removeEventListener('open-whatsapp-chat', handleRemoteOpen);
+  }, []);
+
   // Log to terminal helper
   const logToTerminal = (msg: string) => {
     window.dispatchEvent(new CustomEvent('portfolio-log', {

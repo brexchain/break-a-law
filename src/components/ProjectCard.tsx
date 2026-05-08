@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { ExternalLink, CheckCircle2, AlertCircle, X, Maximize2 } from 'lucide-react';
+import { ExternalLink, CheckCircle2, AlertCircle, X, Maximize2, MessageSquare, Binary } from 'lucide-react';
 import { cn } from '../lib/utils';
 
 export interface ProjectProps {
@@ -11,14 +11,21 @@ export interface ProjectProps {
   url: string;
   tech: string[];
   gradient: string;
+  isBlocked?: boolean;
   labels: {
     highlights: string;
     challenge: string;
   };
 }
 
-const ProjectCard: React.FC<ProjectProps> = ({ title, description, highlights, challenges, url, tech, gradient, labels }) => {
+const ProjectCard: React.FC<ProjectProps> = ({ title, description, highlights, challenges, url, tech, gradient, isBlocked, labels }) => {
   const [isFlipped, setIsFlipped] = useState(false);
+
+  const logToTerminal = (message: string, type: 'SYSTEM' | 'UI' | 'LOGIC' = 'UI') => {
+    window.dispatchEvent(new CustomEvent('portfolio-log', {
+      detail: { message, type }
+    }));
+  };
 
   const handleFlip = (e: React.MouseEvent) => {
     // Prevent flip if clicking the external link or iframe controls
@@ -28,12 +35,7 @@ const ProjectCard: React.FC<ProjectProps> = ({ title, description, highlights, c
     setIsFlipped(newState);
     
     // Log to Audit Console
-    window.dispatchEvent(new CustomEvent('portfolio-log', {
-      detail: { 
-        message: `Card ${newState ? 'FLIPPED_TO_PREVIEW' : 'RETURNED_TO_INFO'}: ${title}`, 
-        type: 'UI' 
-      }
-    }));
+    logToTerminal(`Card ${newState ? 'FLIPPED_TO_PREVIEW' : 'RETURNED_TO_INFO'}: ${title}`, 'UI');
   };
 
   return (
@@ -131,8 +133,20 @@ const ProjectCard: React.FC<ProjectProps> = ({ title, description, highlights, c
             </div>
             
             <div className="pt-4 mt-auto">
-              <div className="text-[9px] font-mono uppercase tracking-[0.2em] text-zinc-400 text-center">
-                Click card to flip for preview
+              <div className="flex flex-col gap-3">
+                <a
+                  href={url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={(e) => e.stopPropagation()}
+                  className="w-full flex items-center justify-center gap-2 py-3.5 rounded-2xl bg-zinc-900 dark:bg-white text-white dark:text-black text-[11px] font-bold uppercase tracking-widest hover:scale-[1.02] transition-all cursor-pointer shadow-xl active:scale-95 group/open"
+                >
+                  <span>Live Projekt Öffnen</span>
+                  <ExternalLink size={14} className="group-hover/open:translate-x-0.5 group-hover/open:-translate-y-0.5 transition-transform" />
+                </a>
+                <div className="text-[9px] font-mono uppercase tracking-[0.2em] text-zinc-400 text-center">
+                  Click card to flip for code-audit preview
+                </div>
               </div>
             </div>
           </div>
@@ -170,43 +184,87 @@ const ProjectCard: React.FC<ProjectProps> = ({ title, description, highlights, c
             {/* Themed Fallback Background */}
             <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center bg-zinc-100 dark:bg-zinc-900 z-0">
                <div className="absolute inset-0 opacity-20 pointer-events-none bg-[radial-gradient(#888_1px,transparent_1px)] [background-size:16px_16px]" />
-               <div className={cn("w-24 h-24 rounded-full mb-6 blur-3xl opacity-40 animate-pulse", gradient)} />
+               <div className={cn("w-32 h-32 rounded-full mb-8 blur-3xl opacity-30 animate-pulse", gradient)} />
                
-               <div className="relative z-10 space-y-4 max-w-sm">
-                 <div className="flex items-center justify-center gap-2 text-brand-primary mb-2">
-                   <AlertCircle size={20} className="animate-bounce" />
-                   <span className="text-[10px] font-bold uppercase tracking-[0.2em] font-mono">Sicherheitsprotokoll Aktiv</span>
+               <div className="relative z-10 space-y-6 max-w-sm">
+                 <div className="flex flex-col items-center gap-4">
+                   <div className="p-4 rounded-2xl bg-zinc-900/5 dark:bg-white/5 border border-zinc-200 dark:border-white/10 shadow-inner">
+                     <AlertCircle size={32} className="text-brand-primary animate-pulse" />
+                   </div>
+                   <div className="space-y-1">
+                     <h4 className="text-base font-bold text-zinc-900 dark:text-white font-display uppercase tracking-tight">Echtzeit-Vorschau</h4>
+                     <div className="flex items-center justify-center gap-2">
+                       <span className="h-1.5 w-1.5 rounded-full bg-orange-500" />
+                       <span className="text-[10px] font-bold uppercase tracking-[0.2em] font-mono text-zinc-500">Iframe Beschränkt</span>
+                     </div>
+                   </div>
                  </div>
-                 <h4 className="text-sm font-bold text-zinc-900 dark:text-white font-display uppercase tracking-tight">Externe Vorschau Eingeschränkt</h4>
-                 <p className="text-[10px] font-mono text-zinc-500 mb-6 leading-relaxed bg-zinc-900/5 dark:bg-white/5 p-4 rounded-xl border border-zinc-200 dark:border-white/5">
-                   Die Zieladresse <span className="text-blue-500 font-bold underline">{url.replace('https://', '')}</span> erzwingt strikte <span className="text-zinc-900 dark:text-zinc-200 font-bold underline decoration-brand-primary">X-Frame-Richtlinien</span>. 
-                   Dies ist ein Sicherheitsfeature der Zielseite, um unbefugtes Einbetten zu verhindern. 
-                   Nutzen Sie den Button unten für den direkten Zugriff.
-                 </p>
-                 <a 
-                   href={url} 
-                   target="_blank" 
-                   rel="noopener noreferrer"
-                   onClick={(e) => {
-                     e.stopPropagation();
-                     setIsFlipped(false);
-                   }}
-                   className="inline-flex items-center gap-3 px-8 py-3.5 rounded-full bg-brand-primary text-white text-[11px] font-bold shadow-2xl hover:scale-105 transition-all group/btn border border-white/20 active:scale-95"
-                 >
-                   <span>Live-Verbindung Herstellen</span>
-                   <ExternalLink size={14} className="group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform" />
-                 </a>
+
+                 <div className="bg-zinc-900/5 dark:bg-black/40 p-5 rounded-2xl border border-zinc-200 dark:border-white/5 backdrop-blur-sm relative overflow-hidden">
+                    <div className="absolute top-0 right-0 p-2 opacity-10">
+                      <Binary size={40} />
+                    </div>
+                    <p className="text-[11px] font-mono text-zinc-500 leading-relaxed mb-4 relative z-10">
+                      Die Sicherheitsarchitektur von <span className="text-zinc-900 dark:text-white font-bold">{url.replace('https://', '')}</span> erlaubt keine Einbettung in Frames. 
+                    </p>
+                    <div className="grid grid-cols-2 gap-2 relative z-10">
+                      <div className="p-2 bg-zinc-900/5 dark:bg-white/5 rounded-lg border border-zinc-200 dark:border-white/5 text-[9px] font-mono text-zinc-400">
+                        X-FRAME: DENY
+                      </div>
+                      <div className="p-2 bg-zinc-900/5 dark:bg-white/5 rounded-lg border border-zinc-200 dark:border-white/5 text-[9px] font-mono text-zinc-400">
+                        CORS: ACTIVE
+                      </div>
+                    </div>
+                 </div>
+
+                 <div className="flex justify-center gap-1.5 h-1">
+                   {[...Array(6)].map((_, i) => (
+                     <motion.div
+                       key={i}
+                       animate={{ 
+                         scaleY: [1, 2, 1],
+                         opacity: [0.3, 1, 0.3]
+                       }}
+                       transition={{ 
+                         duration: 1.5, 
+                         repeat: Infinity, 
+                         delay: i * 0.2 
+                       }}
+                       className={cn("w-1 h-full rounded-full", gradient)}
+                     />
+                   ))}
+                 </div>
+
+                 <div className="pt-2">
+                   <a 
+                     href={url} 
+                     target="_blank" 
+                     rel="noopener noreferrer"
+                     onClick={(e) => {
+                       e.stopPropagation();
+                       setIsFlipped(false);
+                       logToTerminal(`External audit connection: ${title}`, "SYSTEM");
+                     }}
+                     className="w-full inline-flex items-center justify-center gap-3 px-8 py-4 rounded-2xl bg-brand-primary text-white text-xs font-bold uppercase tracking-widest shadow-2xl hover:scale-105 transition-all group/btn border border-white/20 active:scale-95"
+                   >
+                     <span>Live Projekt Besuchen</span>
+                     <ExternalLink size={16} className="group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform" />
+                   </a>
+                   <p className="text-[9px] text-zinc-400 mt-4 font-mono uppercase tracking-widest">
+                     In neuem Tab öffnen für vollen Zugriff
+                   </p>
+                 </div>
                </div>
             </div>
             
             <AnimatePresence>
-              {isFlipped && (
+              {isFlipped && !isBlocked && (
                 <motion.iframe
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.1 }}
                   src={url}
-                  className="relative h-full w-full border-none pointer-events-auto z-10 bg-transparent"
+                  className="relative h-full w-full border-none pointer-events-auto z-10 bg-white"
                   title={`${title} preview`}
                 />
               )}
