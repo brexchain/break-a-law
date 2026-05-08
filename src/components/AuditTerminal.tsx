@@ -81,8 +81,11 @@ const AuditTerminal = () => {
             {/* Log Area */}
             <div 
               ref={scrollRef}
-              className="flex-1 p-4 overflow-y-auto font-mono text-[10px] space-y-2 scrollbar-hide"
+              className="flex-1 p-4 overflow-y-auto font-mono text-[10px] space-y-2 scrollbar-hide relative"
             >
+              {/* Scanline Overlay */}
+              <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.1)_50%),linear-gradient(90deg,rgba(255,0,0,0.02),rgba(0,255,0,0.01),rgba(0,0,255,0.02))] bg-[length:100%_2px,3px_100%] z-20 opacity-50" />
+              
               {logs.map((log) => (
                 <div key={log.id} className="flex gap-2">
                   <span className="text-zinc-600 shrink-0">[{log.time}]</span>

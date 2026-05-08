@@ -18,10 +18,12 @@ import {
   Zap,
   Github,
   Menu,
-  X
+  X,
+  MessageSquare
 } from 'lucide-react';
 import ProjectCard from './components/ProjectCard';
 import ThemeToggle from './components/ThemeToggle';
+import FloatingWhatsApp from './components/FloatingWhatsApp';
 import WhatsAppContact from './components/WhatsAppContact';
 import UXProBackground from './components/UXProBackground';
 import TelemetryCursor from './components/TelemetryCursor';
@@ -303,6 +305,18 @@ export default function App() {
       "color: #888; font-size: 12px; font-family: monospace;"
     );
 
+    const handleScroll = () => {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.body.style.setProperty('--scroll-progress', `${scrolled}%`);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
     // Keyboard Shortcuts
     const handleKeys = (e: KeyboardEvent) => {
       if (e.altKey && e.key.toLowerCase() === 't') {
@@ -335,6 +349,10 @@ export default function App() {
   return (
     <div className="min-h-screen selection:bg-brand-primary selection:text-white relative">
       <TelemetryCursor />
+      <FloatingWhatsApp 
+        phoneNumber="+436508278461" 
+        labels={t.contact.wa}
+      />
       <AuditTerminal />
       <UXProBackground />
       {/* Navigation */}
@@ -420,11 +438,11 @@ export default function App() {
       {/* Hero Section */}
       <header className="relative pt-32 pb-20 overflow-hidden">
         <div className="absolute top-1/4 left-1/4 -z-10 h-[500px] w-[500px] rounded-full bg-brand-primary/10 blur-[120px]" />
-        <div className="mx-auto max-w-7xl px-6">
+        <div className="mx-auto max-w-7xl px-6 flex flex-col md:flex-row justify-between items-start gap-12">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            className="max-w-4xl"
+            className="flex-1 max-w-4xl"
           >
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-zinc-200 dark:border-white/10 bg-zinc-50 dark:bg-white/5 px-4 py-1.5 ">
               <span className="relative flex h-2 w-2">
@@ -452,7 +470,56 @@ export default function App() {
               </a>
               <div className="flex items-center gap-4 px-4 overflow-hidden">
                 <ShieldCheck size={24} className="text-brand-green" />
-                <span className="text-[10px] uppercase font-bold tracking-tighter text-zinc-400">Tested to Audit Standards</span>
+                <span className="text-[10px] uppercase font-bold tracking-tighter text-zinc-400">{t.hero.standards}</span>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Quick Contact Badge */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.3 }}
+            className="hidden lg:block w-72"
+          >
+            <div className="p-6 rounded-[2rem] border border-zinc-200 dark:border-white/10 bg-white/50 dark:bg-white/5 backdrop-blur-xl relative overflow-hidden group">
+              <div className="absolute -right-4 -top-4 h-24 w-24 rounded-full bg-brand-green/10 blur-2xl group-hover:bg-brand-green/20 transition-colors" />
+              
+              <div className="flex items-center gap-4 mb-6">
+                <div className="h-12 w-12 rounded-2xl bg-brand-green flex items-center justify-center text-black shadow-lg shadow-brand-green/20">
+                  <motion.div
+                    animate={{ scale: [1, 1.1, 1] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                  >
+                    <MessageSquare size={24} />
+                  </motion.div>
+                </div>
+                <div>
+                  <h4 className="text-[11px] font-bold text-zinc-900 dark:text-white uppercase tracking-[0.2em]">{t.contact.wa.title}</h4>
+                  <div className="flex items-center gap-1.5 mt-1">
+                    <div className="h-1.5 w-1.5 rounded-full bg-brand-green animate-pulse" />
+                    <span className="text-[9px] text-zinc-500 font-mono italic">{t.contact.wa.status}</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="space-y-3">
+                 <p className="text-[10px] text-zinc-500 leading-relaxed italic">
+                   "{t.hero.contactTeaser || (lang === 'de' ? 'Direkter Draht für Audits & strategische Anfragen.' : 'Direct line for audits & strategic inquiries.')}"
+                 </p>
+                 <button 
+                  onClick={() => {
+                    window.dispatchEvent(new CustomEvent('portfolio-log', {
+                      detail: { message: "Header WhatsApp entry initiated", type: 'UI' }
+                    }));
+                    // Open the WhatsApp link directly with the default message
+                    const msg = lang === 'de' ? "Hallo Petar, ich würde gerne über ein Projekt sprechen!" : "Hi Petar, I would love to chat about a project!";
+                    window.open(`https://wa.me/436508278461?text=${encodeURIComponent(msg)}`, '_blank');
+                  }}
+                  className="w-full py-4 rounded-2xl bg-zinc-900 dark:bg-white text-white dark:text-black text-xs font-bold uppercase tracking-widest hover:scale-[1.02] transition-all cursor-pointer shadow-xl active:scale-95"
+                 >
+                   {lang === 'de' ? 'Chat Starten' : 'Start Chat'}
+                 </button>
               </div>
             </div>
           </motion.div>
