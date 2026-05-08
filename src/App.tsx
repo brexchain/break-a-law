@@ -24,6 +24,8 @@ import ProjectCard from './components/ProjectCard';
 import ThemeToggle from './components/ThemeToggle';
 import WhatsAppContact from './components/WhatsAppContact';
 import UXProBackground from './components/UXProBackground';
+import TelemetryCursor from './components/TelemetryCursor';
+import AuditTerminal from './components/AuditTerminal';
 import { translations } from './translations';
 import { cn } from './lib/utils';
 
@@ -51,6 +53,131 @@ const PROJECTS_DATA = [
         "Optimistic UI updates that remain stable despite high latency"
       ],
       challenges: "Avoiding race conditions and state drift when hundreds of users access the same park instance simultaneously."
+    }
+  },
+  {
+    id: "bw",
+    title: "Baum Wien",
+    url: "https://baumwien.vercel.app",
+    tech: ["D3.js", "Data-Integrity", "OGD"],
+    gradient: "bg-emerald-500",
+    de: {
+      description: "Visualisierung städtischer OGD-Daten. Fokus auf die Identifikation von Inkonsistenzen in öffentlichen Datensätzen.",
+      highlights: [
+        "Normalisierung und Validierung von 100k+ disparaten Datenpunkten",
+        "Debugging von Visualisierungs-Code für präzise Geo-Korrelationen",
+        "Entwicklung einer skalierbaren Logik für Umwelt-Heatmaps"
+      ],
+      challenges: "Identifikation und Korrektur von Messfehlern in den Rohdaten der Stadt Wien vor der Visualisierung."
+    },
+    en: {
+      description: "Visualization of urban OGD data. Focus on identifying inconsistencies in public datasets.",
+      highlights: [
+        "Normalization and validation of 100k+ disparate data points",
+        "Debugging visualization code for precise geo-correlations",
+        "Development of scalable logic for environmental heatmaps"
+      ],
+      challenges: "Identification and correction of measurement errors in raw data from the city of Vienna prior to visualization."
+    }
+  },
+  {
+    id: "sz",
+    title: "Schweizer",
+    url: "https://schweizer.vercel.app",
+    tech: ["Next.js", "UX-Consistency", "Layout-Audit"],
+    gradient: "bg-zinc-500",
+    de: {
+      description: "Architektur-Showcase. Fokus auf chirurgische Präzision und die Konsistenz des Design-Systems über alle Viewports.",
+      highlights: [
+        "Automatisierter Audit der Grid-Ausrichtung über 12+ Breakpoints",
+        "Validierung der typografischen Hierarchie in komplexen Layouts",
+        "Optimierung der Asset-Pipeline für extrem geringe Ladezeiten"
+      ],
+      challenges: "Aufrechterhaltung einer konsistenten User-Experience bei maximaler visueller Komplexität und hoher Bilddichte."
+    },
+    en: {
+      description: "Architectural showcase. Focus on surgical precision and design system consistency across all viewports.",
+      highlights: [
+        "Automated audit of grid alignment across 12+ breakpoints",
+        "Validation of typographic hierarchy in complex layouts",
+        "Optimization of asset pipeline for extremely low load times"
+      ],
+      challenges: "Maintaining a consistent user experience despite maximum visual complexity and high image density."
+    }
+  },
+  {
+    id: "bm",
+    title: "Brauhof Max",
+    url: "https://brauhof-max.vercel.app",
+    tech: ["Mobile-Logic", "Process-Audit", "Automation"],
+    gradient: "bg-amber-600",
+    de: {
+      description: "Digitales Gastro-Management. Audit und Optimierung von Bestell-Workflows für stressige Live-Umgebungen.",
+      highlights: [
+        "Validierung von End-to-End Transaktionslogik für mobile Bestellungen",
+        "Stresstest der UI-Latenz unter realen Küchenbedingungen",
+        "Implementierung von Fallbacks für instabile Netzwerkzustände im Service"
+      ],
+      challenges: "Integration digitaler Präzision in die chaotische Realität einer Live-Küche ohne Zeitverlust für das Personal."
+    },
+    en: {
+      description: "Digital hospitality management. Audit and optimization of ordering workflows for high-stress environments.",
+      highlights: [
+        "Validation of end-to-end transaction logic for mobile orders",
+        "Stress-testing UI latency under real-world kitchen conditions",
+        "Implementation of fallbacks for unstable network states during service"
+      ],
+      challenges: "Integrating digital precision into the chaotic reality of a live kitchen without time loss for staff."
+    }
+  },
+  {
+    id: "tbb",
+    title: "The Butler Brigade",
+    url: "https://the-butler-brigade.vercel.app",
+    tech: ["React", "Service-Logic", "Premium-UX"],
+    gradient: "bg-slate-700",
+    de: {
+      description: "Exklusives Service-Management. Fokus auf diskrete Logik und Hochpräzisions-Workflows für Premium-Dienstleistungen.",
+      highlights: [
+        "Automatisierte Logistik-Validierung",
+        "State-Management für komplexe VIP-Anfragen",
+        "Präzisions-UI für exklusive Umgebungen"
+      ],
+      challenges: "Sicherstellung absoluter Vorhersehbarkeit in hochsensiblen Service-Szenarien."
+    },
+    en: {
+      description: "Exclusive service management. Focus on discrete logic and high-precision workflows for premium services.",
+      highlights: [
+        "Automated logistics validation",
+        "State management for complex VIP requests",
+        "Precision UI for exclusive environments"
+      ],
+      challenges: "Ensuring absolute predictability in highly sensitive service scenarios."
+    }
+  },
+  {
+    id: "cv",
+    title: "Capoeira Vienna",
+    url: "https://capoeiravienna.vercel.app",
+    tech: ["React", "Community-Logic", "Media-Optimization"],
+    gradient: "bg-green-600",
+    de: {
+      description: "Dynamische Community-Plattform. Auditor-Check für die Integrität von Trainings-Daten und Event-Logik.",
+      highlights: [
+        "Validierung von Echtzeit-Event-Streams",
+        "Responsive UI für Mobilgeräte im Trainings-Einsatz",
+        "Optimierung der Datenstruktur für Community-Growth"
+      ],
+      challenges: "Performance-Optimierung bei der Darstellung hochfrequenter Media-Assets."
+    },
+    en: {
+      description: "Dynamic community platform. Auditor check for training data integrity and event logic.",
+      highlights: [
+        "Validation of real-time event streams",
+        "Responsive UI for mobile devices during training",
+        "Data structure optimization for community growth"
+      ],
+      challenges: "Performance optimization for displaying high-frequency media assets."
     }
   },
   {
@@ -129,78 +256,28 @@ const PROJECTS_DATA = [
     }
   },
   {
-    id: "bw",
-    title: "Baum Wien",
-    url: "https://baumwien.vercel.app",
-    tech: ["D3.js", "Data-Integrity", "OGD"],
-    gradient: "bg-emerald-500",
+    id: "lcg",
+    title: "Le Chansonnier Global",
+    url: "https://le-chansonnier-global.vercel.app",
+    tech: ["React", "Accessibility-Audit", "Global-Scale"],
+    gradient: "bg-indigo-600",
     de: {
-      description: "Visualisierung städtischer OGD-Daten. Fokus auf die Identifikation von Inkonsistenzen in öffentlichen Datensätzen.",
+      description: "Globaler Kultur-Showcase. Fokus auf barrierefreie UI-Architektur und internationale Daten-Konsistenz.",
       highlights: [
-        "Normalisierung und Validierung von 100k+ disparaten Datenpunkten",
-        "Debugging von Visualisierungs-Code für präzise Geo-Korrelationen",
-        "Entwicklung einer skalierbaren Logik für Umwelt-Heatmaps"
+        "Mehrstufiger Audit der Accessibility (WCAG)",
+        "Globale CDN-Optimierung für Zero-Latency",
+        "Zentralisierte Logik für mehrsprachige Inhalte"
       ],
-      challenges: "Identifikation und Korrektur von Messfehlern in den Rohdaten der Stadt Wien vor der Visualisierung."
+      challenges: "Gewährleistung einer identischen Experience über diverse kulturelle und technische Grenzen hinweg."
     },
     en: {
-      description: "Visualization of urban OGD data. Focus on identifying inconsistencies in public datasets.",
+      description: "Global cultural showcase. Focus on accessible UI architecture and international data consistency.",
       highlights: [
-        "Normalization and validation of 100k+ disparate data points",
-        "Debugging visualization code for precise geo-correlations",
-        "Development of scalable logic for environmental heatmaps"
+        "Multi-stage accessibility audit (WCAG)",
+        "Global CDN optimization for zero-latency",
+        "Centralized logic for multi-language content"
       ],
-      challenges: "Identification and correction of measurement errors in raw data from the city of Vienna prior to visualization."
-    }
-  },
-  {
-    id: "sz",
-    title: "Schweizer",
-    url: "https://schweizer.vercel.app",
-    tech: ["Next.js", "UX-Consistency", "Layout-Audit"],
-    gradient: "bg-zinc-500",
-    de: {
-      description: "Architektur-Showcase. Fokus auf chirurgische Präzision und die Konsistenz des Design-Systems über alle Viewports.",
-      highlights: [
-        "Automatisierter Audit der Grid-Ausrichtung über 12+ Breakpoints",
-        "Validierung der typografischen Hierarchie in komplexen Layouts",
-        "Optimierung der Asset-Pipeline für extrem geringe Ladezeiten"
-      ],
-      challenges: "Aufrechterhaltung einer konsistenten User-Experience bei maximaler visueller Komplexität und hoher Bilddichte."
-    },
-    en: {
-      description: "Architectural showcase. Focus on surgical precision and design system consistency across all viewports.",
-      highlights: [
-        "Automated audit of grid alignment across 12+ breakpoints",
-        "Validation of typographic hierarchy in complex layouts",
-        "Optimization of asset pipeline for extremely low load times"
-      ],
-      challenges: "Maintaining a consistent user experience despite maximum visual complexity and high image density."
-    }
-  },
-  {
-    id: "bm",
-    title: "Brauhof Max",
-    url: "https://brauhof-max.vercel.app",
-    tech: ["Mobile-Logic", "Process-Audit", "Automation"],
-    gradient: "bg-amber-600",
-    de: {
-      description: "Digitales Gastro-Management. Audit und Optimierung von Bestell-Workflows für stressige Live-Umgebungen.",
-      highlights: [
-        "Validierung von End-to-End Transaktionslogik für mobile Bestellungen",
-        "Stresstest der UI-Latenz unter realen Küchenbedingungen",
-        "Implementierung von Fallbacks für instabile Netzwerkzustände im Service"
-      ],
-      challenges: "Integration digitaler Präzision in die chaotische Realität einer Live-Küche ohne Zeitverlust für das Personal."
-    },
-    en: {
-      description: "Digital hospitality management. Audit and optimization of ordering workflows for high-stress environments.",
-      highlights: [
-        "Validation of end-to-end transaction logic for mobile orders",
-        "Stress-testing UI latency under real-world kitchen conditions",
-        "Implementation of fallbacks for unstable network states during service"
-      ],
-      challenges: "Integrating digital precision into the chaotic reality of a live kitchen without time loss for staff."
+      challenges: "Ensuring an identical experience across diverse cultural and technical boundaries."
     }
   }
 ];
@@ -211,36 +288,82 @@ export default function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const t = translations[lang];
 
+  // Helper for logging to AuditTerminal
+  const logToTerminal = (message: string, type: 'SYSTEM' | 'UI' | 'LOGIC' = 'UI') => {
+    window.dispatchEvent(new CustomEvent('portfolio-log', {
+      detail: { message, type }
+    }));
+  };
+
+  useEffect(() => {
+    // ASCII Signature
+    console.log(
+      "%cPETAR BREKALO | UX AUDITOR\n%cPrecision Logic & Future-Proof Interfaces\n---------------------------------",
+      "color: #FF5C00; font-size: 20px; font-weight: bold; font-family: monospace;",
+      "color: #888; font-size: 12px; font-family: monospace;"
+    );
+
+    // Keyboard Shortcuts
+    const handleKeys = (e: KeyboardEvent) => {
+      if (e.altKey && e.key.toLowerCase() === 't') {
+        logToTerminal("Shortcut: Manual Theme Override", "SYSTEM");
+        // ThemeToggle logic is internal, but we can log the attempt
+      }
+      if (e.altKey && e.key.toLowerCase() === 'l') {
+        setLang(prev => prev === 'de' ? 'en' : 'de');
+        logToTerminal(`Shortcut: Language toggled to ${lang === 'de' ? 'EN' : 'DE'}`, "UI");
+      }
+    };
+
+    window.addEventListener('keydown', handleKeys);
+    return () => window.removeEventListener('keydown', handleKeys);
+  }, [lang]);
+
   useEffect(() => {
     if (isMenuOpen) {
       document.body.style.overflow = 'hidden';
+      logToTerminal("Mobile Navigation Overlay: ACTIVE", "UI");
     } else {
       document.body.style.overflow = 'unset';
     }
   }, [isMenuOpen]);
 
+  useEffect(() => {
+     logToTerminal(`Environment initialized: lang=${lang.toUpperCase()}, viewport=${window.innerWidth}px`, "SYSTEM");
+  }, []);
+
   return (
-    <div className="min-h-screen bg-white dark:bg-black text-zinc-900 dark:text-zinc-100 transition-colors duration-500 selection:bg-brand-primary selection:text-white relative">
+    <div className="min-h-screen selection:bg-brand-primary selection:text-white relative">
+      <TelemetryCursor />
+      <AuditTerminal />
       <UXProBackground />
       {/* Navigation */}
-      <nav className="fixed top-0 z-50 w-full border-b bg-white/80 dark:bg-black/80 backdrop-blur-xl border-zinc-200 dark:border-white/10 transition-colors duration-500">
+      <nav className="fixed top-0 z-50 w-full border-b bg-white/80 dark:bg-black/95 backdrop-blur-xl border-zinc-200 dark:border-white/10 transition-all duration-500">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
           <div className="flex items-center gap-2">
-            <div className="h-8 w-8 rounded bg-brand-primary flex items-center justify-center text-white font-display font-bold shadow-lg shadow-brand-primary/20">PB</div>
-            <span className="font-display font-bold tracking-tight hidden xs:block uppercase">Petar Brekalo</span>
+            <motion.div 
+              whileHover={{ scale: 1.1, rotate: 5 }}
+              className="h-9 w-9 rounded-xl bg-brand-primary flex items-center justify-center text-white font-display font-bold shadow-lg shadow-brand-primary/30"
+            >
+              PB
+            </motion.div>
+            <span className="font-display font-bold tracking-tight hidden xs:block uppercase text-sm">Petar Brekalo</span>
           </div>
           
-          <div className="flex items-center gap-4">
-            <div className="hidden md:flex items-center gap-8 mr-4">
+          <div className="flex items-center gap-3">
+            <div className="hidden md:flex items-center gap-8 mr-6">
               <a href="#projects" className="text-xs font-bold uppercase tracking-widest hover:text-brand-primary transition-colors">{t.nav.projects}</a>
               <a href="#cv" className="text-xs font-bold uppercase tracking-widest hover:text-brand-primary transition-colors">{t.nav.cv}</a>
               <a href="#philosophy" className="text-xs font-bold uppercase tracking-widest hover:text-brand-primary transition-colors">{t.nav.philosophy}</a>
             </div>
             
-            <div className="flex items-center gap-2 border-l border-zinc-200 dark:border-white/10 pl-4 sm:pl-6">
+            <div className="flex items-center gap-2 border-l border-zinc-200 dark:border-white/10 pl-4">
               <button 
-                onClick={() => setLang(lang === 'de' ? 'en' : 'de')}
-                className="flex items-center gap-1.5 p-2 rounded-xl hover:bg-zinc-100 dark:hover:bg-white/5 transition-colors cursor-pointer"
+                onClick={() => {
+                  setLang(lang === 'de' ? 'en' : 'de');
+                  logToTerminal(`Language manually set to ${lang === 'de' ? 'English' : 'German'}`, "UI");
+                }}
+                className="flex items-center gap-1.5 p-2.5 rounded-xl hover:bg-zinc-100 dark:hover:bg-white/10 transition-colors cursor-pointer"
               >
                 <Languages size={18} className="text-zinc-500" />
                 <span className="text-[10px] font-bold uppercase font-mono">{lang === 'de' ? 'EN' : 'DE'}</span>
@@ -248,9 +371,10 @@ export default function App() {
               <ThemeToggle />
               <button 
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="md:hidden p-2 rounded-xl bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 cursor-pointer"
+                className="md:hidden h-10 w-10 flex items-center justify-center rounded-2xl bg-zinc-900/90 dark:bg-white/90 text-white dark:text-black shadow-xl backdrop-blur-md cursor-pointer active:scale-90 transition-all border border-white/10 dark:border-black/10"
+                aria-label="Menu"
               >
-                {isMenuOpen ? <X size={18} /> : <Menu size={18} />}
+                {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
               </button>
             </div>
           </div>

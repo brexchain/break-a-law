@@ -17,14 +17,13 @@ export default function UXProBackground() {
   }, []);
 
   return (
-    <div className="fixed inset-0 -z-30 overflow-hidden pointer-events-none select-none opacity-20 dark:opacity-10">
+    <div className="fixed inset-0 -z-50 overflow-hidden pointer-events-none select-none opacity-20 dark:opacity-10 transition-opacity duration-700">
       {/* Precision Grid */}
       <div 
-        className="absolute inset-0" 
+        className="absolute inset-0 transition-colors duration-500" 
         style={{ 
-          backgroundImage: `radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)`,
+          backgroundImage: `radial-gradient(circle at 1px 1px, var(--grid-color) 1px, transparent 0)`,
           backgroundSize: '40px 40px',
-          color: 'rgba(255, 92, 0, 0.05)'
         }} 
       />
 
