@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { ExternalLink, CheckCircle2, AlertCircle, X, Maximize2, MessageSquare, Binary } from 'lucide-react';
+import { ExternalLink, CheckCircle2, AlertCircle, RotateCcw, Globe } from 'lucide-react';
 import { cn } from '../lib/utils';
 
 export interface ProjectProps {
@@ -11,270 +11,186 @@ export interface ProjectProps {
   url: string;
   tech: string[];
   gradient: string;
-  isBlocked?: boolean;
   labels: {
     highlights: string;
     challenge: string;
   };
 }
 
-const ProjectCard: React.FC<ProjectProps> = ({ title, description, highlights, challenges, url, tech, gradient, isBlocked, labels }) => {
+const ProjectCard: React.FC<ProjectProps> = ({ title, description, highlights, challenges, url, tech, gradient, labels }) => {
   const [isFlipped, setIsFlipped] = useState(false);
 
-  const logToTerminal = (message: string, type: 'SYSTEM' | 'UI' | 'LOGIC' = 'UI') => {
-    window.dispatchEvent(new CustomEvent('portfolio-log', {
-      detail: { message, type }
-    }));
-  };
-
   const handleFlip = (e: React.MouseEvent) => {
-    // Prevent flip if clicking the external link or iframe controls
-    if ((e.target as HTMLElement).closest('a') || (e.target as HTMLElement).closest('button')) return;
-    
-    const newState = !isFlipped;
-    setIsFlipped(newState);
-    
-    // Log to Audit Console
-    logToTerminal(`Card ${newState ? 'FLIPPED_TO_PREVIEW' : 'RETURNED_TO_INFO'}: ${title}`, 'UI');
+    // Prevent flip if clicking on a link
+    if ((e.target as HTMLElement).closest('a')) return;
+    setIsFlipped(!isFlipped);
   };
 
   return (
-    <div className="group perspective-1000 h-[500px] w-full">
-      <motion.div
-        initial={false}
-        animate={{ rotateY: isFlipped ? 180 : 0 }}
-        transition={{ duration: 0.6, transition: { type: 'spring', stiffness: 260, damping: 20 } }}
-        style={{ transformStyle: 'preserve-3d' }}
-        className="relative h-full w-full cursor-pointer"
+    <div className="flex flex-col gap-4">
+      <div 
+        className="relative h-[550px] w-full [perspective:1000px] group cursor-pointer"
         onClick={handleFlip}
       >
-        {/* Front Side */}
-        <div 
-          className="absolute inset-0 backface-hidden rounded-3xl border border-zinc-200 dark:border-white/10 bg-zinc-50 dark:bg-zinc-900/50 p-8 shadow-xl dark:shadow-2xl overflow-hidden hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors duration-500"
-          style={{ backfaceVisibility: 'hidden' }}
+        <motion.div
+          animate={{ rotateY: isFlipped ? 180 : 0 }}
+          transition={{ duration: 0.6, type: 'spring', stiffness: 260, damping: 20 }}
+          className="relative h-full w-full [transform-style:preserve-3d]"
         >
-          <div className={cn("absolute -right-20 -top-20 h-64 w-64 rounded-full opacity-10 blur-3xl transition-opacity group-hover:opacity-20", gradient)} />
-          
-          <div className="relative z-10 flex flex-col h-full">
-            <div className="mb-6 flex items-start justify-between">
-              <div className="flex-1 min-w-0">
-                <h3 className="font-display text-2xl font-bold tracking-tight text-zinc-900 dark:text-white mb-1 group-hover:text-brand-primary transition-colors truncate flex items-center gap-2">
-                  {title}
-                  <div className="group/info relative inline-block">
-                    <AlertCircle size={14} className="text-zinc-400 hover:text-brand-primary cursor-help" />
-                    <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-48 p-2 bg-zinc-900 text-[9px] text-zinc-200 rounded-lg opacity-0 group-hover/info:opacity-100 transition-opacity pointer-events-none z-50 shadow-xl border border-white/10 font-mono normal-case tracking-normal">
-                      Hinweis: Manche Seiten blockieren die direkte Vorschau aus Sicherheitsgründen (X-Frame).
+          {/* Front Side */}
+          <div className="absolute inset-0 [backface-visibility:hidden]">
+            <div className="h-full w-full overflow-hidden rounded-3xl border border-zinc-200 dark:border-white/10 bg-zinc-50 dark:bg-zinc-900/50 p-8 hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-all duration-500 shadow-xl dark:shadow-2xl">
+              <div className={cn("absolute -right-20 -top-20 h-64 w-64 rounded-full opacity-10 blur-3xl transition-opacity group-hover:opacity-20", gradient)} />
+              
+              <div className="relative z-10 flex flex-col h-full">
+                <div className="mb-6 flex items-start justify-between">
+                  <div>
+                    <h3 className="font-display text-2xl font-bold tracking-tight text-zinc-900 dark:text-white mb-1 group-hover:text-brand-primary transition-colors">{title}</h3>
+                    <a 
+                      href={url} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-xs font-mono text-blue-500 hover:text-blue-600 font-bold transition-colors mb-3 block truncate max-w-[200px]"
+                    >
+                      {url.replace('https://', '')}
+                    </a>
+                    <div className="flex flex-wrap gap-2">
+                      {tech.map((t) => (
+                        <span key={t} className="rounded-full bg-zinc-900/5 dark:bg-white/5 px-3 py-1 text-[10px] uppercase tracking-wider text-zinc-500 dark:text-zinc-400 border border-zinc-900/5 dark:border-white/5 font-mono">
+                          {t}
+                        </span>
+                      ))}
                     </div>
                   </div>
-                </h3>
-                <span className="text-[10px] font-mono text-blue-500 hover:text-blue-600 transition-colors mb-3 block truncate underline font-bold">
-                  {url.replace('https://', '')}
-                </span>
-                <div className="flex flex-wrap gap-2">
-                  {tech.map((t) => (
-                    <span key={t} className="rounded-full bg-zinc-900/5 dark:bg-white/5 px-3 py-1 text-[10px] uppercase tracking-wider text-zinc-500 dark:text-zinc-400 border border-zinc-900/5 dark:border-white/5 font-mono">
-                      {t}
-                    </span>
-                  ))}
+                  <a
+                    href={url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="rounded-full bg-zinc-900/10 dark:bg-white/10 p-2 text-zinc-900 dark:text-white hover:bg-brand-primary hover:text-white transition-colors cursor-pointer"
+                  >
+                    <ExternalLink size={20} />
+                  </a>
                 </div>
-              </div>
-              <div className="flex gap-2 ml-4">
-                <button
-                  onClick={(e) => { e.stopPropagation(); setIsFlipped(true); }}
-                  className="rounded-full bg-zinc-900/5 dark:bg-white/10 p-2 text-zinc-900 dark:text-white hover:bg-zinc-900 hover:text-white dark:hover:bg-white dark:hover:text-black transition-all"
-                  title="Preview"
-                >
-                  <Maximize2 size={18} />
-                </button>
-                <a
-                  href={url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={(e) => e.stopPropagation()}
-                  className="rounded-full bg-brand-primary p-2 text-white hover:scale-110 transition-transform shadow-lg shadow-brand-primary/20"
-                >
-                  <ExternalLink size={18} />
-                </a>
-              </div>
-            </div>
 
-            <p className="mb-8 text-zinc-600 dark:text-zinc-400 leading-relaxed text-sm antialiased">
-              {description}
-            </p>
-
-            <div className="mt-auto space-y-6">
-              <div>
-                <div className="flex items-center gap-2 mb-3 text-brand-green">
-                  <CheckCircle2 size={16} strokeWidth={2.5} />
-                  <span className="text-[10px] font-bold uppercase tracking-[0.2em] font-mono">{labels.highlights}</span>
-                </div>
-                <ul className="grid grid-cols-1 gap-2.5">
-                  {highlights.map((h, i) => (
-                    <li key={i} className="flex items-start gap-3 p-3.5 rounded-2xl bg-zinc-900/[0.03] dark:bg-white/[0.03] border border-zinc-200 dark:border-white/5 text-[11px] text-zinc-700 dark:text-zinc-300 leading-snug group/item hover:bg-white dark:hover:bg-zinc-800 transition-all duration-300 hover:shadow-xl hover:shadow-black/5 dark:hover:shadow-white/5">
-                      <div className="mt-1 flex-shrink-0">
-                        <CheckCircle2 size={12} className="text-brand-green" />
-                      </div>
-                      <span className="flex-1">{h}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div className="rounded-2xl bg-zinc-200/50 dark:bg-black/40 p-5 border border-zinc-200 dark:border-white/5 relative overflow-hidden group/challenge">
-                <div className={cn("absolute -right-4 -bottom-4 h-16 w-16 rounded-full opacity-5 blur-xl", gradient)} />
-                <div className="flex items-center gap-2 mb-2 text-brand-primary">
-                  <AlertCircle size={16} strokeWidth={2.5} />
-                  <span className="text-[10px] font-bold uppercase tracking-[0.2em] font-mono">{labels.challenge}</span>
-                </div>
-                <p className="text-[11px] text-zinc-600 dark:text-zinc-400 leading-relaxed italic relative z-10">
-                  "{challenges}"
+                <p className="mb-8 text-zinc-600 dark:text-zinc-400 leading-relaxed text-sm">
+                  {description}
                 </p>
-              </div>
-            </div>
-            
-            <div className="pt-4 mt-auto">
-              <div className="flex flex-col gap-3">
-                <a
-                  href={url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={(e) => e.stopPropagation()}
-                  className="w-full flex items-center justify-center gap-2 py-3.5 rounded-2xl bg-zinc-900 dark:bg-white text-white dark:text-black text-[11px] font-bold uppercase tracking-widest hover:scale-[1.02] transition-all cursor-pointer shadow-xl active:scale-95 group/open"
-                >
-                  <span>Live Projekt Öffnen</span>
-                  <ExternalLink size={14} className="group-hover/open:translate-x-0.5 group-hover/open:-translate-y-0.5 transition-transform" />
-                </a>
-                <div className="text-[9px] font-mono uppercase tracking-[0.2em] text-zinc-400 text-center">
-                  Click card to flip for code-audit preview
+
+                <div className="mt-auto space-y-6">
+                  <div>
+                    <div className="flex items-center gap-2 mb-3 text-brand-green">
+                      <CheckCircle2 size={16} />
+                      <span className="text-xs font-bold uppercase tracking-widest font-display italic">{labels.highlights}</span>
+                    </div>
+                    <ul className="grid grid-cols-1 gap-2">
+                      {highlights.map((h, i) => (
+                        <li key={i} className="flex items-start gap-2 text-xs text-zinc-700 dark:text-zinc-300">
+                          <span className="mt-1 h-1 w-1 rounded-full bg-brand-green" />
+                          {h}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div className="rounded-2xl bg-zinc-200/50 dark:bg-black/40 p-4 border border-zinc-200 dark:border-white/5">
+                    <div className="flex items-center gap-2 mb-2 text-brand-primary">
+                      <AlertCircle size={16} />
+                      <span className="text-xs font-bold uppercase tracking-widest font-display italic">{labels.challenge}</span>
+                    </div>
+                    <p className="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed italic">
+                      "{challenges}"
+                    </p>
+                  </div>
+                  
+                  <div className="pt-2 text-center">
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-zinc-400 animate-pulse">Click to Preview</span>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
 
-        {/* Back Side (Preview) */}
-        <div 
-          className="absolute inset-0 backface-hidden rounded-3xl border border-zinc-200 dark:border-white/10 bg-zinc-100 dark:bg-zinc-900 shadow-2xl overflow-hidden"
-          style={{ transform: 'rotateY(180deg)', backfaceVisibility: 'hidden' }}
-        >
-          <div className="absolute top-0 left-0 w-full z-20 flex items-center justify-between p-4 bg-white/80 dark:bg-black/80 backdrop-blur-md border-b border-zinc-200 dark:border-white/10">
-            <div className="flex items-center gap-3">
-              <div className={cn("h-3 w-3 rounded-full", gradient)} />
-              <span className="text-xs font-bold font-mono tracking-tight dark:text-white truncate max-w-[150px]">{title}</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <a 
-                href={url} 
-                target="_blank" 
-                onClick={(e) => e.stopPropagation()}
-                className="p-2 rounded-lg hover:bg-zinc-200 dark:hover:bg-white/10 transition-colors text-zinc-500 hover:text-brand-primary"
-              >
-                <ExternalLink size={16} />
-              </a>
-              <button
-                onClick={(e) => { e.stopPropagation(); setIsFlipped(false); }}
-                className="p-2 rounded-lg bg-zinc-900 dark:bg-white text-white dark:text-black hover:scale-105 transition-transform cursor-pointer"
-              >
-                <X size={16} />
-              </button>
-            </div>
-          </div>
-          
-          <div className="h-full w-full pt-14 bg-zinc-200 dark:bg-black relative overflow-hidden">
-            {/* Themed Fallback Background */}
-            <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center bg-zinc-100 dark:bg-zinc-900 z-0">
-               <div className="absolute inset-0 opacity-20 pointer-events-none bg-[radial-gradient(#888_1px,transparent_1px)] [background-size:16px_16px]" />
-               <div className={cn("w-32 h-32 rounded-full mb-8 blur-3xl opacity-30 animate-pulse", gradient)} />
-               
-               <div className="relative z-10 space-y-6 max-w-sm">
-                 <div className="flex flex-col items-center gap-4">
-                   <div className="p-4 rounded-2xl bg-zinc-900/5 dark:bg-white/5 border border-zinc-200 dark:border-white/10 shadow-inner">
-                     <AlertCircle size={32} className="text-brand-primary animate-pulse" />
-                   </div>
-                   <div className="space-y-1">
-                     <h4 className="text-base font-bold text-zinc-900 dark:text-white font-display uppercase tracking-tight">Echtzeit-Vorschau</h4>
-                     <div className="flex items-center justify-center gap-2">
-                       <span className="h-1.5 w-1.5 rounded-full bg-orange-500" />
-                       <span className="text-[10px] font-bold uppercase tracking-[0.2em] font-mono text-zinc-500">Iframe Beschränkt</span>
-                     </div>
-                   </div>
-                 </div>
-
-                 <div className="bg-zinc-900/5 dark:bg-black/40 p-5 rounded-2xl border border-zinc-200 dark:border-white/5 backdrop-blur-sm relative overflow-hidden">
-                    <div className="absolute top-0 right-0 p-2 opacity-10">
-                      <Binary size={40} />
-                    </div>
-                    <p className="text-[11px] font-mono text-zinc-500 leading-relaxed mb-4 relative z-10">
-                      Die Sicherheitsarchitektur von <span className="text-zinc-900 dark:text-white font-bold">{url.replace('https://', '')}</span> erlaubt keine Einbettung in Frames. 
-                    </p>
-                    <div className="grid grid-cols-2 gap-2 relative z-10">
-                      <div className="p-2 bg-zinc-900/5 dark:bg-white/5 rounded-lg border border-zinc-200 dark:border-white/5 text-[9px] font-mono text-zinc-400">
-                        X-FRAME: DENY
-                      </div>
-                      <div className="p-2 bg-zinc-900/5 dark:bg-white/5 rounded-lg border border-zinc-200 dark:border-white/5 text-[9px] font-mono text-zinc-400">
-                        CORS: ACTIVE
-                      </div>
-                    </div>
-                 </div>
-
-                 <div className="flex justify-center gap-1.5 h-1">
-                   {[...Array(6)].map((_, i) => (
-                     <motion.div
-                       key={i}
-                       animate={{ 
-                         scaleY: [1, 2, 1],
-                         opacity: [0.3, 1, 0.3]
-                       }}
-                       transition={{ 
-                         duration: 1.5, 
-                         repeat: Infinity, 
-                         delay: i * 0.2 
-                       }}
-                       className={cn("w-1 h-full rounded-full", gradient)}
-                     />
-                   ))}
-                 </div>
-
-                 <div className="pt-2">
-                   <a 
-                     href={url} 
-                     target="_blank" 
-                     rel="noopener noreferrer"
-                     onClick={(e) => {
-                       e.stopPropagation();
-                       setIsFlipped(false);
-                       logToTerminal(`External audit connection: ${title}`, "SYSTEM");
-                     }}
-                     className="w-full inline-flex items-center justify-center gap-3 px-8 py-4 rounded-2xl bg-brand-primary text-white text-xs font-bold uppercase tracking-widest shadow-2xl hover:scale-105 transition-all group/btn border border-white/20 active:scale-95"
-                   >
-                     <span>Live Projekt Besuchen</span>
-                     <ExternalLink size={16} className="group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform" />
-                   </a>
-                   <p className="text-[9px] text-zinc-400 mt-4 font-mono uppercase tracking-widest">
-                     In neuem Tab öffnen für vollen Zugriff
-                   </p>
-                 </div>
-               </div>
-            </div>
-            
-            <AnimatePresence>
-              {isFlipped && !isBlocked && (
-                <motion.iframe
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.1 }}
-                  src={url}
-                  className="relative h-full w-full border-none pointer-events-auto z-10 bg-white"
-                  title={`${title} preview`}
+          {/* Back Side (Preview) */}
+          <div className="absolute inset-0 [backface-visibility:hidden] [transform:rotateY(180deg)]">
+            <div className="h-full w-full overflow-hidden rounded-3xl border border-zinc-200 dark:border-white/10 bg-black shadow-2xl relative flex flex-col">
+              <div className="flex items-center justify-between p-4 bg-zinc-900 border-b border-white/5">
+                <div className="flex items-center gap-3">
+                  <button 
+                    onClick={() => setIsFlipped(false)}
+                    className="p-2 rounded-xl hover:bg-white/10 text-white transition-colors"
+                  >
+                    <RotateCcw size={18} />
+                  </button>
+                  <span className="text-xs font-bold text-zinc-400 font-mono">{title}</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <button 
+                    onClick={() => window.open(url, '_blank')}
+                    className="text-[10px] font-bold uppercase tracking-widest px-3 py-2 rounded-xl bg-red-950/55 text-red-400 border border-red-500/30 hover:bg-red-900/40 transition-colors"
+                  >
+                    Loading Forbidden?
+                  </button>
+                  <a 
+                    href={url} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest px-4 py-2 rounded-xl bg-blue-600 text-white hover:bg-blue-700 transition-colors"
+                  >
+                    <ExternalLink size={14} />
+                    Open App
+                  </a>
+                </div>
+              </div>
+              
+              <div className="flex-1 bg-white relative group/frame">
+                <iframe 
+                  src={url} 
+                  className="h-full w-full border-none"
+                  title={`${title} Preview`}
+                  loading="lazy"
                 />
-              )}
-            </AnimatePresence>
+                <div className="absolute inset-0 flex flex-col items-center justify-center bg-zinc-900/40 backdrop-blur-[2px] opacity-0 group-hover/frame:opacity-100 transition-opacity pointer-events-none">
+                   <div className="bg-zinc-900 p-6 rounded-2xl border border-white/10 text-center space-y-4 max-w-[80%] pointer-events-auto">
+                      <Globe className="mx-auto text-blue-500" size={32} />
+                      <p className="text-xs text-white font-bold leading-relaxed">Previewing interactive site. If the frame doesn't load, use the external link button.</p>
+                      <button 
+                        onClick={() => window.open(url, '_blank')}
+                        className="w-full py-2 bg-blue-600 text-white text-xs font-bold rounded-lg hover:bg-blue-700 transition-colors"
+                      >
+                        Open In New Tab
+                      </button>
+                   </div>
+                </div>
+              </div>
+
+              <div className="p-3 bg-zinc-950 text-center border-t border-white/5 flex items-center justify-center gap-2">
+                <span className="text-[10px] font-mono text-zinc-400">Loading forbidden or failed?</span>
+                <button 
+                  onClick={() => window.open(url, '_blank')}
+                  className="text-[10px] text-blue-400 hover:text-blue-300 font-bold underline uppercase font-mono"
+                >
+                  Direct Link
+                </button>
+              </div>
+            </div>
           </div>
-        </div>
-      </motion.div>
+        </motion.div>
+      </div>
+      
+      {/* Fallback link below tile */}
+      <div className="px-4">
+        <a 
+          href={url} 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="flex items-center justify-center gap-2 py-3 rounded-2xl border border-zinc-200 dark:border-white/10 bg-white dark:bg-zinc-900 text-xs font-bold text-blue-500 hover:text-blue-600 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-all shadow-sm"
+        >
+          <ExternalLink size={14} />
+          {title}: {url.replace('https://', '')}
+        </a>
+      </div>
     </div>
   );
 };
 
 export default ProjectCard;
-

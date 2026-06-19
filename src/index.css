@@ -29,38 +29,10 @@
   }
   
   body {
-    @apply bg-[var(--bg-main)] text-zinc-900 dark:text-zinc-100 transition-colors duration-500 antialiased overflow-x-hidden;
-  }
-
-  /* Progress Bar */
-  body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: var(--scroll-progress, 0%);
-    height: 3px;
-    background: #FF5C00;
-    z-index: 1001;
-    transition: width 0.1s ease-out;
-    box-shadow: 0 0 10px rgba(255, 92, 0, 0.5);
-  }
-
-  /* Allow the custom cursor to still reveal it is clicking */
-  a, button, .cursor-pointer {
-    cursor: auto;
+    @apply bg-[var(--bg-main)] text-zinc-900 dark:text-zinc-100 transition-colors duration-500 antialiased;
   }
 
   *, ::after, ::before {
     @apply border-zinc-200 dark:border-white/10 transition-colors duration-500;
   }
-}
-
-.perspective-1000 {
-  perspective: 1000px;
-}
-
-.backface-hidden {
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
 }

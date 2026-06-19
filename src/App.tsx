@@ -18,18 +18,12 @@ import {
   Zap,
   Github,
   Menu,
-  X,
-  MessageSquare,
-  Send,
-  ExternalLink
+  X
 } from 'lucide-react';
 import ProjectCard from './components/ProjectCard';
 import ThemeToggle from './components/ThemeToggle';
-import FloatingWhatsApp from './components/FloatingWhatsApp';
 import WhatsAppContact from './components/WhatsAppContact';
 import UXProBackground from './components/UXProBackground';
-import TelemetryCursor from './components/TelemetryCursor';
-import AuditTerminal from './components/AuditTerminal';
 import { translations } from './translations';
 import { cn } from './lib/utils';
 
@@ -135,6 +129,31 @@ const PROJECTS_DATA = [
     }
   },
   {
+    id: "cw",
+    title: "Coffee-Werk",
+    url: "https://coffeewerk.vercel.app",
+    tech: ["Next.js", "Process-Optimization", "UX-Audit"],
+    gradient: "bg-orange-600",
+    de: {
+      description: "Modernes Kaffee-Management-System. Fokus auf die Reduzierung von Prozess-Komplexität in der Gastronomie.",
+      highlights: [
+        "Chirurgische Optimierung des Bestell-Workflows",
+        "Validierung der Performance-Metriken im Live-Betrieb",
+        "Audit-Driven UI für maximale Fehlerreduktion"
+      ],
+      challenges: "Synchronisierung komplexer Warenbestände mit Echtzeit-Bestellungen bei minimaler User-Interaktion."
+    },
+    en: {
+      description: "Modern coffee management system. Focus on reducing process complexity in the hospitality sector.",
+      highlights: [
+        "Surgical optimization of the ordering workflow",
+        "Validation of performance metrics in live operation",
+        "Audit-driven UI for maximum error reduction"
+      ],
+      challenges: "Synchronizing complex inventory with real-time orders with minimal user interaction."
+    }
+  },
+  {
     id: "tbb",
     title: "The Butler Brigade",
     url: "https://the-butler-brigade.vercel.app",
@@ -163,7 +182,6 @@ const PROJECTS_DATA = [
     id: "cv",
     title: "Capoeira Vienna",
     url: "https://capoeiravienna.vercel.app",
-    isBlocked: true,
     tech: ["React", "Community-Logic", "Media-Optimization"],
     gradient: "bg-green-600",
     de: {
@@ -189,7 +207,6 @@ const PROJECTS_DATA = [
     id: "ts",
     title: "Paumann Service-UX",
     url: "https://paumann.vercel.app",
-    isBlocked: true,
     tech: ["React", "Logic-Verification", "UX-Audit"],
     gradient: "bg-red-500",
     de: {
@@ -215,7 +232,6 @@ const PROJECTS_DATA = [
     id: "ttl",
     title: "Triny Three Logic",
     url: "https://triny-three.vercel.app",
-    isBlocked: true,
     tech: ["Three.js", "Zustand", "State-Machines"],
     gradient: "bg-orange-500",
     de: {
@@ -235,32 +251,6 @@ const PROJECTS_DATA = [
         "Optimization of render cycles for maximum stability (60 FPS performance audit)"
       ],
       challenges: "Synchronizing asynchronous logic states with frame-based 3D visuals without memory leaks."
-    }
-  },
-  {
-    id: "c54",
-    title: "Cumberland 54 Minimax",
-    url: "https://cumberland54minimax.vercel.app",
-    isBlocked: true,
-    tech: ["Data-Logic", "React", "Filtering-QA"],
-    gradient: "bg-yellow-500",
-    de: {
-      description: "High-Density Dashboard für Immobilien. Fokus auf performante Filterlogik und saubere Datenrepräsentation.",
-      highlights: [
-        "Entwicklung einer multidimensionalen, fehlerfreien Filter-Architektur",
-        "Validierung von Inventar-Daten auf Konsistenz und Dubletten",
-        "Performance-Audit der Such-Engine für Instant-Feedback"
-      ],
-      challenges: "Präsentation von hunderten Attributen pro Datensatz, ohne dass die UI unübersichtlich oder die Logik fehleranfällig wird."
-    },
-    en: {
-      description: "High-density real estate dashboard. Focus on high-performance filter logic and clean data representation.",
-      highlights: [
-        "Development of a multi-dimensional, error-free filter architecture",
-        "Validation of inventory data for consistency and duplicates",
-        "Performance audit of the search engine for instant feedback"
-      ],
-      challenges: "Presenting hundreds of attributes per record without making the UI cluttered or the logic prone to errors."
     }
   },
   {
@@ -287,6 +277,81 @@ const PROJECTS_DATA = [
       ],
       challenges: "Ensuring an identical experience across diverse cultural and technical boundaries."
     }
+  },
+  {
+    id: "nag",
+    title: "No-Ads Guitar Tuner",
+    url: "https://noaddsguitartuner.vercel.app/",
+    tech: ["React", "Audio-Synthesis", "Mobile-UX"],
+    gradient: "bg-indigo-500",
+    de: {
+      description: "Werbefreie Gitarren-Lern- und Stimm-Applikation. Fokus auf Latenzfreiheit bei Audio-Synthesen und Tuning-Präzision.",
+      highlights: [
+        "Entwicklung hochperformanter Web-Audio-Stimmgeräte",
+        "Echtzeit-Digitalfrequenzdetektion direkt im Browser",
+        "Minimalistische, ablenkungsfreie Benutzeroberfläche"
+      ],
+      challenges: "Minimierung von Mikrofon-Latenzen auf diversen Mobilgeräten für verlässliche Tonhöhen-Erkennung."
+    },
+    en: {
+      description: "Ad-free guitar learning and tuning application. Focus on zero-latency audio synthesis and tuning accuracy.",
+      highlights: [
+        "Development of high-performance Web Audio tuners",
+        "Real-time digital frequency detection directly in the browser",
+        "Minimalist, distraction-free user interface design"
+      ],
+      challenges: "Minimizing microphone latency on mobile devices for reliable pitch recognition."
+    }
+  },
+  {
+    id: "bs",
+    title: "Balkan Studi",
+    url: "https://balkanstudi.vercel.app",
+    tech: ["Next.js", "Education-Tech", "APIs"],
+    gradient: "bg-teal-600",
+    de: {
+      description: "Kollaborative Lernplattform für Studierende. Fokus auf strukturierte Kursnavigation und Wissensaustausch.",
+      highlights: [
+        "Interaktive Dashboards für optimierten Lernfortschritt",
+        "Skalierbare API-Architektur für geteilte Dokumente und Studienhilfen",
+        "Smarte Echtzeit-Filterung und Volltextsuche über Fachgebiete"
+      ],
+      challenges: "Performante Verarbeitung und Kategorisierung heterogener Dokumentenformate in Echtzeit."
+    },
+    en: {
+      description: "Collaborative learning platform for students. Focus on structured course navigation and community knowledge exchange.",
+      highlights: [
+        "Interactive learning progress dashboards",
+        "Scalable API architecture for shared documents and study resources",
+        "Smart real-time filtering and full-text search across subject areas"
+      ],
+      challenges: "High-performance processing and categorizing of heterogeneous document formats in real time."
+    }
+  },
+  {
+    id: "mp",
+    title: "Mixpult",
+    url: "https://mixpult.vercel.app",
+    tech: ["Web Audio API", "Svelte/Vite", "DSP"],
+    gradient: "bg-purple-600",
+    de: {
+      description: "Interaktives Web-Mischpult mit Multi-Spur-DSP-Visualisierung und Echtzeit-Frequenzanalyse.",
+      highlights: [
+        "Multi-Kanal Web Audio Routing & Dynamic Signal Processing",
+        "Flüssiges 60-FPS Frequenzanalysator-Rendering in Canvas",
+        "Latenzfreie Schieberegler- und Regler-Interaktionssteuerung"
+      ],
+      challenges: "Vermeidung von Audio-Knacksern und Frame-Drops bei hochaufgelöstem Canvas-Rendering."
+    },
+    en: {
+      description: "Interactive web mixing console featuring multi-track DSP visualization and real-time audio analysis.",
+      highlights: [
+        "Multi-channel Web Audio routing and dynamic signal processing",
+        "Smooth 60-FPS frequency analyzer rendering in Canvas",
+        "Zero-latency fader and potentiometer interaction controls"
+      ],
+      challenges: "Preventing audio glitches and frame drops during high-resolution canvas rendering loops."
+    }
   }
 ];
 
@@ -294,73 +359,18 @@ export default function App() {
   const [lang, setLang] = useState<'de' | 'en'>('de');
   const [cvMode, setCvMode] = useState<'short' | 'pdf'>('short');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [waMessage, setWaMessage] = useState("");
   const t = translations[lang];
-
-  // Helper for logging to AuditTerminal
-  const logToTerminal = (message: string, type: 'SYSTEM' | 'UI' | 'LOGIC' = 'UI') => {
-    window.dispatchEvent(new CustomEvent('portfolio-log', {
-      detail: { message, type }
-    }));
-  };
-
-  useEffect(() => {
-    // ASCII Signature
-    console.log(
-      "%cPETAR BREKALO | UX AUDITOR\n%cPrecision Logic & Future-Proof Interfaces\n---------------------------------",
-      "color: #FF5C00; font-size: 20px; font-weight: bold; font-family: monospace;",
-      "color: #888; font-size: 12px; font-family: monospace;"
-    );
-
-    const handleScroll = () => {
-      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-      const scrolled = (winScroll / height) * 100;
-      document.body.style.setProperty('--scroll-progress', `${scrolled}%`);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  useEffect(() => {
-    // Keyboard Shortcuts
-    const handleKeys = (e: KeyboardEvent) => {
-      if (e.altKey && e.key.toLowerCase() === 't') {
-        logToTerminal("Shortcut: Manual Theme Override", "SYSTEM");
-        // ThemeToggle logic is internal, but we can log the attempt
-      }
-      if (e.altKey && e.key.toLowerCase() === 'l') {
-        setLang(prev => prev === 'de' ? 'en' : 'de');
-        logToTerminal(`Shortcut: Language toggled to ${lang === 'de' ? 'EN' : 'DE'}`, "UI");
-      }
-    };
-
-    window.addEventListener('keydown', handleKeys);
-    return () => window.removeEventListener('keydown', handleKeys);
-  }, [lang]);
 
   useEffect(() => {
     if (isMenuOpen) {
       document.body.style.overflow = 'hidden';
-      logToTerminal("Mobile Navigation Overlay: ACTIVE", "UI");
     } else {
       document.body.style.overflow = 'unset';
     }
   }, [isMenuOpen]);
 
-  useEffect(() => {
-     logToTerminal(`Environment initialized: lang=${lang.toUpperCase()}, viewport=${window.innerWidth}px`, "SYSTEM");
-  }, []);
-
   return (
     <div className="min-h-screen selection:bg-brand-primary selection:text-white relative">
-      <TelemetryCursor />
-      <FloatingWhatsApp 
-        phoneNumber="+436508278461" 
-        labels={t.contact.wa}
-      />
-      <AuditTerminal />
       <UXProBackground />
       {/* Navigation */}
       <nav className="fixed top-0 z-50 w-full border-b bg-white/80 dark:bg-black/95 backdrop-blur-xl border-zinc-200 dark:border-white/10 transition-all duration-500">
@@ -384,10 +394,7 @@ export default function App() {
             
             <div className="flex items-center gap-2 border-l border-zinc-200 dark:border-white/10 pl-4">
               <button 
-                onClick={() => {
-                  setLang(lang === 'de' ? 'en' : 'de');
-                  logToTerminal(`Language manually set to ${lang === 'de' ? 'English' : 'German'}`, "UI");
-                }}
+                onClick={() => setLang(lang === 'de' ? 'en' : 'de')}
                 className="flex items-center gap-1.5 p-2.5 rounded-xl hover:bg-zinc-100 dark:hover:bg-white/10 transition-colors cursor-pointer"
               >
                 <Languages size={18} className="text-zinc-500" />
@@ -396,7 +403,7 @@ export default function App() {
               <ThemeToggle />
               <button 
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="md:hidden h-10 w-10 flex items-center justify-center rounded-2xl bg-zinc-900/90 dark:bg-white/90 text-white dark:text-black shadow-xl backdrop-blur-md cursor-pointer active:scale-90 transition-all border border-white/10 dark:border-black/10"
+                className="md:hidden p-2.5 rounded-xl bg-zinc-900 dark:bg-white text-white dark:text-black shadow-lg cursor-pointer active:scale-95 transition-transform"
                 aria-label="Menu"
               >
                 {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
@@ -445,11 +452,11 @@ export default function App() {
       {/* Hero Section */}
       <header className="relative pt-32 pb-20 overflow-hidden">
         <div className="absolute top-1/4 left-1/4 -z-10 h-[500px] w-[500px] rounded-full bg-brand-primary/10 blur-[120px]" />
-        <div className="mx-auto max-w-7xl px-6 flex flex-col md:flex-row justify-between items-start gap-12">
+        <div className="mx-auto max-w-7xl px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            className="flex-1 max-w-4xl"
+            className="max-w-4xl"
           >
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-zinc-200 dark:border-white/10 bg-zinc-50 dark:bg-white/5 px-4 py-1.5 ">
               <span className="relative flex h-2 w-2">
@@ -477,108 +484,7 @@ export default function App() {
               </a>
               <div className="flex items-center gap-4 px-4 overflow-hidden">
                 <ShieldCheck size={24} className="text-brand-green" />
-                <span className="text-[10px] uppercase font-bold tracking-tighter text-zinc-400">{t.hero.standards}</span>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Quick Contact Badge */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.3 }}
-            className="hidden lg:block w-80"
-          >
-            <div className="p-7 rounded-[2.5rem] border border-zinc-200 dark:border-white/10 bg-white/70 dark:bg-zinc-900/40 backdrop-blur-3xl relative overflow-hidden group shadow-2xl shadow-zinc-400/10 dark:shadow-none">
-              <div className="absolute -right-4 -top-4 h-32 w-32 rounded-full bg-brand-green/10 blur-3xl group-hover:bg-brand-green/20 transition-all duration-700" />
-              
-              <div className="flex items-center gap-4 mb-6 relative z-10">
-                <div className="h-14 w-14 rounded-2xl bg-brand-green flex items-center justify-center text-black shadow-lg shadow-brand-green/20 group-hover:scale-110 transition-transform">
-                  <motion.div
-                    animate={{ scale: [1, 1.1, 1] }}
-                    transition={{ duration: 3, repeat: Infinity }}
-                  >
-                    <MessageSquare size={28} />
-                  </motion.div>
-                </div>
-                <div>
-                  <h4 className="text-[12px] font-bold text-zinc-900 dark:text-white uppercase tracking-[0.2em] mb-1">{t.contact.wa.title}</h4>
-                  <div className="flex items-center gap-1.5">
-                    <div className="h-2 w-2 rounded-full bg-brand-green animate-pulse" />
-                    <span className="text-[10px] text-zinc-500 font-mono italic font-medium">{t.contact.wa.status}</span>
-                  </div>
-                </div>
-              </div>
-
-                   <div className="space-y-4 relative z-10">
-                 <p className="text-[11px] text-zinc-500 leading-relaxed italic opacity-80 border-l-2 border-brand-green/30 pl-3">
-                   "{lang === 'de' ? 'Lockerer Entwickler, Auditor-Hirn. Schreib mir!' : 'Chilled developer, auditor brain. Let\'s chat!'}"
-                 </p>
-                 
-                 <div className="pt-2">
-                   <div className="flex flex-col gap-2 mb-4">
-                     {[
-                       lang === 'de' ? "Projekt-Audit anfragen" : "Request Project Audit",
-                       lang === 'de' ? "Kaffee / Kennenlernen ☕" : "Coffee / Catch-up ☕",
-                       lang === 'de' ? "Komm für uns arbeiten! 🚀" : "Come work for us! 🚀",
-                       lang === 'de' ? "Einfach mal Hallo sagen" : "Just saying hello"
-                     ].map((preset) => (
-                       <button
-                         key={preset}
-                         onClick={() => {
-                           const baseMsg = lang === 'de' 
-                             ? `Servus Petar! Ich melde mich wegen: ${preset}. ` 
-                             : `Hey Petar! Reaching out about: ${preset}. `;
-                           setWaMessage(baseMsg);
-                           logToTerminal(`Topic selected: ${preset}`, "UI");
-                           // Focus the textarea
-                           document.getElementById('header-wa-text')?.focus();
-                         }}
-                         className="w-full py-2.5 px-4 rounded-xl bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10 text-[10px] font-bold uppercase tracking-widest text-zinc-600 dark:text-zinc-400 hover:bg-brand-green/10 hover:text-brand-green hover:border-brand-green/30 transition-all text-left flex items-center justify-between group/p"
-                       >
-                         {preset}
-                         <ArrowRight size={12} className="opacity-0 group-hover/p:opacity-100 group-hover/p:translate-x-1 transition-all" />
-                       </button>
-                     ))}
-                   </div>
-                   
-                   <div className="relative mb-4 bg-zinc-100 dark:bg-black/20 rounded-xl p-3 border border-zinc-200 dark:border-white/5 transition-all focus-within:border-brand-green/50 focus-within:ring-1 focus-within:ring-brand-green/20">
-                     <textarea 
-                       placeholder={lang === 'de' ? "Tippen Sie hier etwas..." : "Type something here..."}
-                       className="w-full h-24 bg-transparent text-[11px] resize-none focus:outline-none dark:text-zinc-300 font-mono leading-relaxed"
-                       value={waMessage}
-                       onChange={(e) => setWaMessage(e.target.value)}
-                       id="header-wa-text"
-                     />
-                     <button 
-                       onClick={() => {
-                         if (waMessage.trim().length < 5) return;
-                         window.open(`https://wa.me/436508278461?text=${encodeURIComponent(waMessage)}`, '_blank');
-                         logToTerminal("WhatsApp Audit-Request dispatched", "UI");
-                       }}
-                       disabled={waMessage.trim().length < 5}
-                       className={cn(
-                         "absolute bottom-3 right-3 p-2.5 rounded-xl transition-all duration-500 active:scale-95",
-                         waMessage.trim().length >= 5 
-                           ? "bg-brand-green text-black shadow-[0_0_20px_rgba(34,197,94,0.3)] hover:scale-110" 
-                           : "bg-zinc-200 dark:bg-white/5 text-zinc-400 cursor-not-allowed opacity-50"
-                       )}
-                     >
-                       <Send size={16} />
-                     </button>
-                   </div>
-
-                   <button 
-                    onClick={() => {
-                      logToTerminal("Header WhatsApp interaction: BUBBLE_TRIGGER", "UI");
-                      window.dispatchEvent(new CustomEvent('open-whatsapp-chat', { detail: { message: waMessage } }));
-                    }}
-                    className="w-full py-3.5 rounded-2xl bg-zinc-900 dark:bg-white text-white dark:text-black text-[10px] font-bold uppercase tracking-widest hover:scale-[1.02] transition-all cursor-pointer shadow-xl active:scale-95 flex items-center justify-center gap-2"
-                   >
-                     <Zap size={14} className="text-brand-green" />
-                     {lang === 'de' ? 'Vollbildmodus' : 'Full Chat View'}
-                   </button>
-                 </div>
+                <span className="text-[10px] uppercase font-bold tracking-tighter text-zinc-400">Tested to Audit Standards</span>
               </div>
             </div>
           </motion.div>
@@ -764,36 +670,20 @@ export default function App() {
             {PROJECTS_DATA.map((p) => {
               const content = lang === 'de' ? p.de : p.en;
               return (
-                <div key={p.id} className="flex flex-col gap-4">
-                  <ProjectCard 
-                    title={p.title}
-                    description={content.description}
-                    url={p.url}
-                    isBlocked={p.isBlocked}
-                    tech={p.tech}
-                    gradient={p.gradient}
-                    highlights={content.highlights}
-                    challenges={content.challenges}
-                    labels={{
-                      highlights: t.projects.highlights,
-                      challenge: t.projects.challenges
-                    }}
-                  />
-                  <a 
-                    href={p.url} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="flex justify-between items-center px-6 py-3 rounded-2xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-white/10 hover:border-brand-green transition-all group shadow-lg shadow-black/5"
-                  >
-                    <span className="text-[10px] font-mono text-zinc-400 group-hover:text-brand-green transition-colors truncate">
-                      {p.url.replace('https://', '')}
-                    </span>
-                    <div className="flex items-center gap-2 text-brand-green">
-                      <span className="text-[10px] font-bold uppercase tracking-widest">{lang === 'de' ? 'Live Projekt' : 'Live Site'}</span>
-                      <ExternalLink size={14} className="group-hover:translate-x-1 transition-transform" />
-                    </div>
-                  </a>
-                </div>
+                <ProjectCard 
+                  key={p.id}
+                  title={p.title}
+                  description={content.description}
+                  url={p.url}
+                  tech={p.tech}
+                  gradient={p.gradient}
+                  highlights={content.highlights}
+                  challenges={content.challenges}
+                  labels={{
+                    highlights: t.projects.highlights,
+                    challenge: t.projects.challenges
+                  }}
+                />
               );
             })}
           </div>

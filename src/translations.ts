@@ -9,7 +9,6 @@ export const translations = {
     },
     hero: {
       badge: "Verfügbar für Impact",
-      standards: "Geprüft nach Audit-Standards",
       title: "Entwicklung mit der",
       titleAccent: "Auditor-Mentalität",
       description: "Mag. Petar Brekalo — Brückenbauer zwischen technischer Präzision und human-zentriertem UI. Ich baue nicht nur Features; ich unterziehe ihre Logik einem Stresstest, um Stabilität und 'UX Fun' auf jeder Ebene zu garantieren.",
@@ -112,7 +111,6 @@ export const translations = {
     },
     hero: {
       badge: "Available for Impact",
-      standards: "Tested to Audit Standards",
       title: "Developing with the",
       titleAccent: "Auditor Mentality",
       description: "Mag. Petar Brekalo — Bridge builder between technical precision and human-centric UI. I don't just build features; I stress-test their logic to ensure stability and 'UX Fun' at every layer.",
