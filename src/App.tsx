@@ -32,325 +32,325 @@ const PROJECTS_DATA = [
     id: "pd",
     title: "Park Dog",
     url: "https://park-dog.vercel.app",
-    tech: ["React", "Firebase", "Socket.IO", "Testing"],
+    tech: ["React", "Firebase", "Live-Map", "Mobile-UX"],
     gradient: "bg-blue-500",
     de: {
-      description: "Echtzeit-Plattform für Hundebesitzer. Mein Fokus: Stresstest der Real-Time Kommunikation unter instabilen Netzwerkbedingungen.",
+      description: "Interaktive Echtzeit-Plattform für Hundebesitzer in Wien. Koordinieren Sie Playdates in Hundezonen und vernetzen Sie sich spielerisch mit der Community.",
       highlights: [
-        "Validierung von Edge-Cases in nicht-deterministischen Echtzeit-Umgebungen",
-        "Echtzeit-Synchronisierung via Socket.IO mit Fokus auf State-Integrität",
-        "Optimistische UI-Updates, die trotz hoher Latenz stabil bleiben"
+        "Interaktive Leaflet-Karte mit Live-Aktivitätsanzeige",
+        "Echtzeit-Synchronisierung der Hundezone-Status via Firebase",
+        "Community-Features zur Absprache von Hundespielen"
       ],
-      challenges: "Vermeidung von 'Race Conditions' und State-Drift bei gleichzeitigen Zugriffen hunderter User auf dieselbe Park-Instanz."
+      challenges: "Robuste Echtzeit-Synchronisierung bei gleichzeitigem Zugriff vieler aktiver Nutzer."
     },
     en: {
-      description: "Real-time coordination platform. My focus: Stress-testing real-time communication under unstable network conditions.",
+      description: "Real-time coordination platform for dog owners in Vienna. Plan playdates at local dog parks and connect with the community seamlessly.",
       highlights: [
-        "Validation of edge cases in non-deterministic real-time environments",
-        "Real-time synchronization via Socket.IO with a focus on state integrity",
-        "Optimistic UI updates that remain stable despite high latency"
+        "Interactive Leaflet map displaying real-time activity",
+        "Real-time park occupancy status synced via Firebase",
+        "Community lounge for quick playdate arrangements"
       ],
-      challenges: "Avoiding race conditions and state drift when hundreds of users access the same park instance simultaneously."
+      challenges: "Ensuring reliable real-time updates and synchronization with active mobile traffic."
     }
   },
   {
     id: "bw",
     title: "Baum Wien",
     url: "https://baumwien.vercel.app",
-    tech: ["D3.js", "Data-Integrity", "OGD"],
+    tech: ["D3.js", "GeoJSON", "Map-Visualization"],
     gradient: "bg-emerald-500",
     de: {
-      description: "Visualisierung städtischer OGD-Daten. Fokus auf die Identifikation von Inkonsistenzen in öffentlichen Datensätzen.",
+      description: "Interaktive Visualisierung städtischer OGD-Baumdaten der Stadt Wien. Spielerisches Erkunden von über 100.000 registrierten Stadtbäumen.",
       highlights: [
-        "Normalisierung und Validierung von 100k+ disparaten Datenpunkten",
-        "Debugging von Visualisierungs-Code für präzise Geo-Korrelationen",
-        "Entwicklung einer skalierbaren Logik für Umwelt-Heatmaps"
+        "Normalisierung und Rendering von 100k+ OGD-Datenpunkten",
+        "Interaktiver Filter nach Baumart, Bezirk und Pflanzjahr",
+        "Detaillierte Charts zur Wiener Stadtökologie"
       ],
-      challenges: "Identifikation und Korrektur von Messfehlern in den Rohdaten der Stadt Wien vor der Visualisierung."
+      challenges: "Verarbeitung und flüssiges Zeichnen riesiger Datenmengen direkt im Webbrowser."
     },
     en: {
-      description: "Visualization of urban OGD data. Focus on identifying inconsistencies in public datasets.",
+      description: "Interactive visualization of public urban tree data from Vienna. Explore and filter over 100,000 registered urban trees.",
       highlights: [
-        "Normalization and validation of 100k+ disparate data points",
-        "Debugging visualization code for precise geo-correlations",
-        "Development of scalable logic for environmental heatmaps"
+        "Normalization and rendering of 100k+ public data records",
+        "Interactive search & filters by species, district, and planting year",
+        "Detailed statistical charts representing urban ecology"
       ],
-      challenges: "Identification and correction of measurement errors in raw data from the city of Vienna prior to visualization."
+      challenges: "Achieving highly responsive rendering of massive geographical datasets."
     }
   },
   {
     id: "sz",
     title: "Schweizer",
     url: "https://schweizer.vercel.app",
-    tech: ["Next.js", "UX-Consistency", "Layout-Audit"],
+    tech: ["React", "Framer Motion", "Design-System"],
     gradient: "bg-zinc-500",
     de: {
-      description: "Architektur-Showcase. Fokus auf chirurgische Präzision und die Konsistenz des Design-Systems über alle Viewports.",
+      description: "Modernes Digital-Showcase für hochwertige Metallbau- und Fassadensysteme. Fokus auf Ästhetik und kompromisslose Layout-Präzision.",
       highlights: [
-        "Automatisierter Audit der Grid-Ausrichtung über 12+ Breakpoints",
-        "Validierung der typografischen Hierarchie in komplexen Layouts",
-        "Optimierung der Asset-Pipeline für extrem geringe Ladezeiten"
+        "Ablenkungsfreie Präsentation von Schweizer Premium-Fassadenprojekten",
+        "Flüssiges Gallery-Layout mit anspruchsvollen Animationen",
+        "Optimierte Asset-Pipeline für extrem schnelle Ladezeiten"
       ],
-      challenges: "Aufrechterhaltung einer konsistenten User-Experience bei maximaler visueller Komplexität und hoher Bilddichte."
+      challenges: "Aufrechterhaltung perfekter Design-System-Konsistenz über alle Viewports hinweg."
     },
     en: {
-      description: "Architectural showcase. Focus on surgical precision and design system consistency across all viewports.",
+      description: "High-end web presentation for premium architectural metal and glass facade systems. Focus on layout precision.",
       highlights: [
-        "Automated audit of grid alignment across 12+ breakpoints",
-        "Validation of typographic hierarchy in complex layouts",
-        "Optimization of asset pipeline for extremely low load times"
+        "Clean presentation of high-end Schweizer facade construction projects",
+        "Fluid gallery layout with custom entrance animations",
+        "Fine-tuned asset loading pipeline for near-instant speed"
       ],
-      challenges: "Maintaining a consistent user experience despite maximum visual complexity and high image density."
+      challenges: "Preserving grid layout precision across all responsive form factors."
     }
   },
   {
     id: "bm",
     title: "Brauhof Max",
     url: "https://brauhof-max.vercel.app",
-    tech: ["Mobile-Logic", "Process-Audit", "Automation"],
+    tech: ["React", "Vite", "Responsive-UI"],
     gradient: "bg-amber-600",
     de: {
-      description: "Digitales Gastro-Management. Audit und Optimierung von Bestell-Workflows für stressige Live-Umgebungen.",
+      description: "Elegante Webpräsenz für das Traditionsgasthaus und Hotel Brauhof Max in Amstetten. Digitale Speisekarte, Buchungshinweise und Reservierungen.",
       highlights: [
-        "Validierung von End-to-End Transaktionslogik für mobile Bestellungen",
-        "Stresstest der UI-Latenz unter realen Küchenbedingungen",
-        "Implementierung von Fallbacks für instabile Netzwerkzustände im Service"
+        "Übersichtliche und responsive Präsentation der Speisen",
+        "Direkte Anbindung an den Tischreservierungs-Kanal",
+        "Modernes Design gepaart mit traditioneller Gastfreundschaft"
       ],
-      challenges: "Integration digitaler Präzision in die chaotische Realität einer Live-Küche ohne Zeitverlust für das Personal."
+      challenges: "Mobil-optimiertes Interface für schnelle Erreichbarkeit von Unterwegs."
     },
     en: {
-      description: "Digital hospitality management. Audit and optimization of ordering workflows for high-stress environments.",
+      description: "Aesthetic digital showcase for the traditional Austrian restaurant and hotel Brauhof Max. Features dynamic menu boards and reservation info.",
       highlights: [
-        "Validation of end-to-end transaction logic for mobile orders",
-        "Stress-testing UI latency under real-world kitchen conditions",
-        "Implementation of fallbacks for unstable network states during service"
+        "Structured and fully responsive digital dining menus",
+        "Quick-access table reservation triggers and contact touchpoints",
+        "Clean interface pairing modern layouts with hospitality heritage"
       ],
-      challenges: "Integrating digital precision into the chaotic reality of a live kitchen without time loss for staff."
+      challenges: "Achieving excellent readability and performance for mobile diners on the go."
     }
   },
   {
     id: "cw",
     title: "Coffee-Werk",
     url: "https://coffeewerk.vercel.app",
-    tech: ["Next.js", "Process-Optimization", "UX-Audit"],
+    tech: ["Next.js", "Framer Motion", "Tailwind CSS"],
     gradient: "bg-orange-600",
     de: {
-      description: "Modernes Kaffee-Management-System. Fokus auf die Reduzierung von Prozess-Komplexität in der Gastronomie.",
+      description: "Repräsentative Webpräsenz für das Kaffee-Erlebnis im Coffee-Werk. Präsentation feinster Röstungen, Getränkekarten und der Café-Atmosphäre.",
       highlights: [
-        "Chirurgische Optimierung des Bestell-Workflows",
-        "Validierung der Performance-Metriken im Live-Betrieb",
-        "Audit-Driven UI für maximale Fehlerreduktion"
+        "Ansprechende Produktinszenierung von hauseigenen Kaffeesorten",
+        "Interaktive digitale Getränkekarte mit Geschmacksdetails",
+        "Anspruchsvolle Typografie und flüssige Übergangseffekte"
       ],
-      challenges: "Synchronisierung komplexer Warenbestände mit Echtzeit-Bestellungen bei minimaler User-Interaktion."
+      challenges: "Übertragung der ansprechenden Café-Atmosphäre in ein makelloses digitales Design."
     },
     en: {
-      description: "Modern coffee management system. Focus on reducing process complexity in the hospitality sector.",
+      description: "Representative web presence for the coffee culture at Coffee-Werk. Showcasing premium roasts, cafe menus, and local charm.",
       highlights: [
-        "Surgical optimization of the ordering workflow",
-        "Validation of performance metrics in live operation",
-        "Audit-driven UI for maximum error reduction"
+        "Beautiful presentation of custom coffee roasts and blends",
+        "Interactive menu boards outlining beverage parameters",
+        "Sophisticated typography and seamless element transitions"
       ],
-      challenges: "Synchronizing complex inventory with real-time orders with minimal user interaction."
+      challenges: "Translating the warm café atmosphere into a stunning digital brand universe."
     }
   },
   {
     id: "tbb",
     title: "The Butler Brigade",
     url: "https://the-butler-brigade.vercel.app",
-    tech: ["React", "Service-Logic", "Premium-UX"],
+    tech: ["React", "Framer Motion", "Premium-Design"],
     gradient: "bg-slate-700",
     de: {
-      description: "Exklusives Service-Management. Fokus auf diskrete Logik und Hochpräzisions-Workflows für Premium-Dienstleistungen.",
+      description: "Premium-Dienstleistungsportal für exklusives Haushaltsmanagement, privaten Kochservice und gehobene Butler-Dienste.",
       highlights: [
-        "Automatisierte Logistik-Validierung",
-        "State-Management für komplexe VIP-Anfragen",
-        "Präzisions-UI für exklusive Umgebungen"
+        "Elegantes Design-System passend zur exklusiven Dienstleistung",
+        "Diskretes, unkompliziertes Booking-Interface für Premium-Kunden",
+        "Moderne Darstellung der anspruchsvollen Servicekataloge"
       ],
-      challenges: "Sicherstellung absoluter Vorhersehbarkeit in hochsensiblen Service-Szenarien."
+      challenges: "Erschaffung einer digitalen Ästhetik von diskreten, erstklassigen Dienstleistungen."
     },
     en: {
-      description: "Exclusive service management. Focus on discrete logic and high-precision workflows for premium services.",
+      description: "Premium agency portal for luxury household management, private dining, and elite butler assistance services.",
       highlights: [
-        "Automated logistics validation",
-        "State management for complex VIP requests",
-        "Precision UI for exclusive environments"
+        "Elite design system matching high-end agency branding",
+        "Discreet, straightforward booking triggers for premium clients",
+        "Interactive presentation of luxury service packages"
       ],
-      challenges: "Ensuring absolute predictability in highly sensitive service scenarios."
+      challenges: "Portraying premium services with a sense of security, polish, and elegance."
     }
   },
   {
     id: "cv",
     title: "Capoeira Vienna",
     url: "https://capoeiravienna.vercel.app",
-    tech: ["React", "Community-Logic", "Media-Optimization"],
+    tech: ["React", "Community-Hub", "Media-Gallery"],
     gradient: "bg-green-600",
     de: {
-      description: "Dynamische Community-Plattform. Auditor-Check für die Integrität von Trainings-Daten und Event-Logik.",
+      description: "Lebendiges Sport- und Community-Portal der Capoeira-Schule in Wien. Aktuelle Trainingspläne, Event-Buchungen und packende Video-Showcases.",
       highlights: [
-        "Validierung von Echtzeit-Event-Streams",
-        "Responsive UI für Mobilgeräte im Trainings-Einsatz",
-        "Optimierung der Datenstruktur für Community-Growth"
+        "Interaktiver Trainingskalender mit Filter nach Leistungsstufe",
+        "Einfaches Anmeldesystem für Workshops und Spezialevents",
+        "Flüssiges Streaming rasanter Trainingsvideos"
       ],
-      challenges: "Performance-Optimierung bei der Darstellung hochfrequenter Media-Assets."
+      challenges: "Benutzerfreundliche Organisation des dynamischen Trainings- und Eventangebots."
     },
     en: {
-      description: "Dynamic community platform. Auditor check for training data integrity and event logic.",
+      description: "Dynamic web hub for the Capoeira community academy in Vienna. Integrates training schedules, event bookings, and media galleries.",
       highlights: [
-        "Validation of real-time event streams",
-        "Responsive UI for mobile devices during training",
-        "Data structure optimization for community growth"
+        "Interactive weekly practice calendar with stage filtering",
+        "Seamless sign-up triggers for workshops and roda events",
+        "Optimized media galleries displaying high-energy martial arts"
       ],
-      challenges: "Performance optimization for displaying high-frequency media assets."
+      challenges: "Structuring highly dynamic event schedules in a clean, comprehensive format."
     }
   },
   {
     id: "ts",
-    title: "Paumann Service-UX",
+    title: "Paumann",
     url: "https://paumann.vercel.app",
-    tech: ["React", "Logic-Verification", "UX-Audit"],
+    tech: ["Next.js", "Framer Motion", "SVG-Assets"],
     gradient: "bg-red-500",
     de: {
-      description: "Interface für technische Serviceumgebungen. Fokus auf logische Konsistenzprüfung bei komplexen Maschinen-Checklisten.",
+      description: "Hervorragende Webpräsenz für Elektro Paumann GmbH. Kompetente Präsentation von Photovoltaik, Loxone Smart Home und moderner Elektroinstallation.",
       highlights: [
-        "Implementierung einer geführten UI-Logik für null Fehlertoleranz",
-        "Reduzierung der kognitiven Belastung durch 'Audit-First' Design",
-        "Validierung von Datenflüssen zwischen Frontend und Legacy-Services"
+        "Interaktiver Photovoltaik-Rechner für erste Kostenschätzungen",
+        "Elegante Portfolio-Auswahl für Wohn- und Gewerbebau-Referenzen",
+        "SEO-optimiertes und blitzschnelles Performance-Layout"
       ],
-      challenges: "Sicherstellung der Datenintegrität bei Offline-First Szenarien in lauten, industriellen Umgebungen."
+      challenges: "Strukturierte Vermittlung komplexer Haustechnik-Themen in einem ansprechenden Design."
     },
     en: {
-      description: "Interface for technical service environments. Focus on logical consistency checks for complex machinery checklists.",
+      description: "Aesthetic enterprise platform for Elektro Paumann GmbH. Clean showcase of photovoltaic systems, Loxone smart automation, and electrical engineering.",
       highlights: [
-        "Implementation of guided UI logic for zero fault tolerance",
-        "Reduction of cognitive load through 'Audit-First' design",
-        "Validation of data flows between frontend and legacy services"
+        "Interactive solar system size estimate helper tools",
+        "Elegant layout for residential and commercial references",
+        "Highly search-engine-optimized performance framework"
       ],
-      challenges: "Ensuring data integrity in offline-first scenarios within noisy, industrial environments."
+      challenges: "Synthesizing deep technical parameters of green energy into accessible customer paths."
     }
   },
   {
     id: "ttl",
-    title: "Triny Three Logic",
+    title: "Triny Three",
     url: "https://triny-three.vercel.app",
-    tech: ["Three.js", "Zustand", "State-Machines"],
+    tech: ["Three.js", "React Three Fiber", "WebGL"],
     gradient: "bg-orange-500",
     de: {
-      description: "Interaktive 3D-Logik. Debugging komplexer Interaktionszustände, um 'Logic Leaks' in der 3D-Navigation zu verhindern.",
+      description: "Interaktives 3D-Showcase auf Basis von Three.js. Erkundung von reaktiven WebGL-Umgebungen und zukunftsweisendem Interface-Design.",
       highlights: [
-        "Zustandsgesteuerte 3D-Mechaniken mit präziser Event-Validierung",
-        "Robustes Fehler-Handling bei asynchronen Asset-Ladevorgängen",
-        "Optimierung von Render-Zyklen für maximale Stabilität (60 FPS Performance-Audit)"
+        "Echtzeit-3D-Rendering-Pipeline mit anspruchsvollen Shadern",
+        "Interaktiver Trackball-Kameresteuerungs-Fluss",
+        "Nahtloser Übergang zwischen 3D-Visualisierung und flachem UI-DOM"
       ],
-      challenges: "Synchronisierung asynchroner Logik-States mit Frame-basierten 3D-Visualisierungen ohne Memory Leaks."
+      challenges: "Vermeidung von Leistungseinbußen auf mobilen Grafikchips bei aufwendigem 3D-Rendering."
     },
     en: {
-      description: "Interactive 3D logic. Debugging complex interaction states to prevent 'logic leaks' in 3D navigation.",
+      description: "Immersive 3D agency showcase powered by Three.js. Exploration of responsive WebGL environments and forward-looking interaction layouts.",
       highlights: [
-        "State-driven 3D mechanics with precise event validation",
-        "Robust error handling for asynchronous asset loading",
-        "Optimization of render cycles for maximum stability (60 FPS performance audit)"
+        "Real-time interactive 3D scene architecture using modern shaders",
+        "Fluid trackball camera interaction paths",
+        "Smooth integration of WebGL scenes with traditional HTML components"
       ],
-      challenges: "Synchronizing asynchronous logic states with frame-based 3D visuals without memory leaks."
+      challenges: "Ensuring stable render frame rates across mobile graphics hardware."
     }
   },
   {
     id: "lcg",
     title: "Le Chansonnier Global",
     url: "https://le-chansonnier-global.vercel.app",
-    tech: ["React", "Accessibility-Audit", "Global-Scale"],
+    tech: ["React", "Framer Motion", "Aesthetic-Typography"],
     gradient: "bg-indigo-600",
     de: {
-      description: "Globaler Kultur-Showcase. Fokus auf barrierefreie UI-Architektur und internationale Daten-Konsistenz.",
+      description: "Stilvolle Webpräsenz für Le Chansonnier – französische Weinbar & Bistro in Wien. Präsentation erlesener Weine und Bistro-Gerichte.",
       highlights: [
-        "Mehrstufiger Audit der Accessibility (WCAG)",
-        "Globale CDN-Optimierung für Zero-Latency",
-        "Zentralisierte Logik für mehrsprachige Inhalte"
+        "Interaktive Weinkarte mit Filterung nach Rebsorten und Herkunftsregionen",
+        "Ästhetisches Bild-Showcase der französischen Spezialitäten",
+        "Nahtlose Desktop- und Mobil-Reservierungsmöglichkeiten"
       ],
-      challenges: "Gewährleistung einer identischen Experience über diverse kulturelle und technische Grenzen hinweg."
+      challenges: "Übertragung der gemütlichen, edlen Abendstimmung des Bistros auf das digitale User-Interface."
     },
     en: {
-      description: "Global cultural showcase. Focus on accessible UI architecture and international data consistency.",
+      description: "Sophisticated web presence for Le Chansonnier – French wine bar & bistro in Vienna. Presenting curated wine selections and dining menus.",
       highlights: [
-        "Multi-stage accessibility audit (WCAG)",
-        "Global CDN optimization for zero-latency",
-        "Centralized logic for multi-language content"
+        "Interactive wine collection table filtering by region and grape",
+        "Elegant visual showcase of culinary kitchen specials",
+        "Seamless booking triggers for tables and wine tastings"
       ],
-      challenges: "Ensuring an identical experience across diverse cultural and technical boundaries."
+      challenges: "Evoking the warm, candlelit atmosphere of the bistro via clean typography and shadows."
     }
   },
   {
     id: "nag",
     title: "No-Ads Guitar Tuner",
     url: "https://noaddsguitartuner.vercel.app/",
-    tech: ["React", "Audio-Synthesis", "Mobile-UX"],
+    tech: ["Web Audio API", "Pitch Detection", "React"],
     gradient: "bg-indigo-500",
     de: {
-      description: "Werbefreie Gitarren-Lern- und Stimm-Applikation. Fokus auf Latenzfreiheit bei Audio-Synthesen und Tuning-Präzision.",
+      description: "100% werbefreies, hochpräzises Web-Audiostimmgerät für Saiteninstrumente. Echtzeit-Frequenzanalyse direkt im Browser über Mikrofoneingaben.",
       highlights: [
-        "Entwicklung hochperformanter Web-Audio-Stimmgeräte",
-        "Echtzeit-Digitalfrequenzdetektion direkt im Browser",
-        "Minimalistische, ablenkungsfreie Benutzeroberfläche"
+        "Latenzfreie Tonhöhen-Visualisierung auf einer virtuellen Stimm-Nadel",
+        "Automatische und manuelle Saitenauswahl für diverse Stimmungen",
+        "Keine Registrierung oder lästige Werbung – reiner Funktionsfokus"
       ],
-      challenges: "Minimierung von Mikrofon-Latenzen auf diversen Mobilgeräten für verlässliche Tonhöhen-Erkennung."
+      challenges: "Störungsfreie Frequenzisolierung aus dem Mikrofonsignal in lauten Umgebungen."
     },
     en: {
-      description: "Ad-free guitar learning and tuning application. Focus on zero-latency audio synthesis and tuning accuracy.",
+      description: "Clean, 100% ad-free, high-precision browser-based guitar tuner. Features real-time pitch detection using microphone inputs.",
       highlights: [
-        "Development of high-performance Web Audio tuners",
-        "Real-time digital frequency detection directly in the browser",
-        "Minimalist, distraction-free user interface design"
+        "Instant low-latency tuning feedback on a responsive visual needle",
+        "Both hands-free auto-detection and manual pitch playback",
+        "Zero install steps, cookie walls, or ads – maximum utility focus"
       ],
-      challenges: "Minimizing microphone latency on mobile devices for reliable pitch recognition."
+      challenges: "Extracting and filtering precise pitch frequencies from ambient mic noise."
     }
   },
   {
     id: "bs",
     title: "Balkan Studi",
     url: "https://balkanstudi.vercel.app",
-    tech: ["Next.js", "Education-Tech", "APIs"],
+    tech: ["Next.js", "Algolia/Search", "Catalog-UX"],
     gradient: "bg-teal-600",
     de: {
-      description: "Kollaborative Lernplattform für Studierende. Fokus auf strukturierte Kursnavigation und Wissensaustausch.",
+      description: "Akademisches Infoportal für Studierende in der Balkanregion. Strukturierte Darstellung von Studiengängen, Voraussetzungen und Dokumenten.",
       highlights: [
-        "Interaktive Dashboards für optimierten Lernfortschritt",
-        "Skalierbare API-Architektur für geteilte Dokumente und Studienhilfen",
-        "Smarte Echtzeit-Filterung und Volltextsuche über Fachgebiete"
+        "Kataloge von Studiengängen und kooperierenden Universitäten",
+        "Flüssige Suchfunktionen mit sofortigem Suchergebnisformular",
+        "Ressourcen-Verzeichnis zur Orientierung im Studiensystem"
       ],
-      challenges: "Performante Verarbeitung und Kategorisierung heterogener Dokumentenformate in Echtzeit."
+      challenges: "Strukturierte Aufbereitung heterogener Studiendaten verschiedener Bildungsstätten."
     },
     en: {
-      description: "Collaborative learning platform for students. Focus on structured course navigation and community knowledge exchange.",
+      description: "Educational catalog and info portal for students in the Balkan region. Organizes courses, requirements, and key study resources.",
       highlights: [
-        "Interactive learning progress dashboards",
-        "Scalable API architecture for shared documents and study resources",
-        "Smart real-time filtering and full-text search across subject areas"
+        "Structured catalog mapping regional university courses and degrees",
+        "Instant multi-attribute search and responsive filter lists",
+        "Helpful resource checklists and survival guides for freshmen"
       ],
-      challenges: "High-performance processing and categorizing of heterogeneous document formats in real time."
+      challenges: "Establishing a standardized, pleasant reading hierarchy for course databases."
     }
   },
   {
     id: "mp",
     title: "Mixpult",
     url: "https://mixpult.vercel.app",
-    tech: ["Web Audio API", "Svelte/Vite", "DSP"],
+    tech: ["Web Audio API", "Svelte/React", "Analyser-Node"],
     gradient: "bg-purple-600",
     de: {
-      description: "Interaktives Web-Mischpult mit Multi-Spur-DSP-Visualisierung und Echtzeit-Frequenzanalyse.",
+      description: "Interaktives Web-Mischpult und DJ-Mischpult. Mehrspur-Routing, Frequenz-Equalizer und Audioeffekte direkt im Webbrowser.",
       highlights: [
-        "Multi-Kanal Web Audio Routing & Dynamic Signal Processing",
-        "Flüssiges 60-FPS Frequenzanalysator-Rendering in Canvas",
-        "Latenzfreie Schieberegler- und Regler-Interaktionssteuerung"
+        "Echtzeit-Kanalabmischung mit Gain und Equalizer (High/Mid/Low)",
+        "Flüssige Waveform- und Level-Meter-Analysen direkt am Deck",
+        "Interaktiver Crossfader zur nahtlosen Überblendung von Songs"
       ],
-      challenges: "Vermeidung von Audio-Knacksern und Frame-Drops bei hochaufgelöstem Canvas-Rendering."
+      challenges: "Vermeidung von Latenzverzögerungen und Knistern bei der parallelen Wiedergabe mehrerer Audiospuren."
     },
     en: {
-      description: "Interactive web mixing console featuring multi-track DSP visualization and real-time audio analysis.",
+      description: "Fully interactive browser-based audio mixer program. Features multi-track deck routing, EQs, and real-time signal analysis.",
       highlights: [
-        "Multi-channel Web Audio routing and dynamic signal processing",
-        "Smooth 60-FPS frequency analyzer rendering in Canvas",
-        "Zero-latency fader and potentiometer interaction controls"
+        "True-to-hardware multi-channel mixing, knobs, and deck gain EQs",
+        "Hardware-simulated dynamic frequency analyser and status meters",
+        "Physical-inspired faders and active crossfading sliders"
       ],
-      challenges: "Preventing audio glitches and frame drops during high-resolution canvas rendering loops."
+      challenges: "Buffering and rendering dense multitrack audios without pops, clicks, or visual delays."
     }
   }
 ];
