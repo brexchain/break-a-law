@@ -341,7 +341,7 @@ const PROJECTS_DATA = [
         "Flüssige Waveform- und Level-Meter-Analysen direkt am Deck",
         "Interaktiver Crossfader zur nahtlosen Überblendung von Songs"
       ],
-      challenges: "Vermeidung von Latenzverzögerungen und Knistern bei der parallelen Wiedergabe mehrerer Audiospuren."
+      challenges: "Vermeidung von Latenzverzögerungen und Knistern bei der parallelen Wiedabe mehrerer Audiospuren."
     },
     en: {
       description: "Fully interactive browser-based audio mixer program. Features multi-track deck routing, EQs, and real-time signal analysis.",
@@ -351,6 +351,56 @@ const PROJECTS_DATA = [
         "Physical-inspired faders and active crossfading sliders"
       ],
       challenges: "Buffering and rendering dense multitrack audios without pops, clicks, or visual delays."
+    }
+  },
+  {
+    id: "qt",
+    title: "QuintTune",
+    url: "https://quinttune.vercel.app/",
+    tech: ["Web Audio API", "Pitch-Detection", "FFT-Analysis"],
+    gradient: "bg-emerald-600",
+    de: {
+      description: "Präzises Audio-Stimmgerät optimiert für Saiten- und Streichinstrumente in Quintenstimmung. Echtzeit-Eingabeanalyse für absolut verlässliche Tonhöhen.",
+      highlights: [
+        "Feine Frequenzerkennung mit unterdrückter Oberschwingungsüberlagerung",
+        "Responsive, zentrierte Abweichungsnadel mit Cent-Anzeige",
+        "Konfigurierbare Referenzfrequenzen für historisch informierte Stimmung"
+      ],
+      challenges: "Sichere Filterung tiefer Frequenzen unter variablen akustischen Mobilgeräte-Bedingungen."
+    },
+    en: {
+      description: "High-precision audio tuner tailored for string instruments following perfect-fifths tuning. Intuitive interface with flawless pitch-detection.",
+      highlights: [
+        "Highly accurate fundamental frequency calculations via refined FFT structures",
+        "Ultra-responsive visual microtonal needle display down to single cents",
+        "Customizable concert pitch frequencies to accommodate historical temperaments"
+      ],
+      challenges: "Isolating low-end root notes from early room reflections and physical body resonances."
+    }
+  },
+  {
+    id: "qcs",
+    title: "QuintCircle Studio",
+    url: "https://quintcirclestudio.vercel.app/",
+    tech: ["React/Vite", "Framer Motion", "Audio-Synthesis"],
+    gradient: "bg-blue-600",
+    de: {
+      description: "Interaktiver und vollsynchronisierter digitaler Quintenzirkel. Ideal für Songwriter, Komponisten und Musiklehrer zur spielerischen Erkundung von Harmonielehre.",
+      highlights: [
+        "Vollständig reaktives Vektor-Kreissegment-Design mit integrierten Audio-Chords",
+        "Echtzeit-Anzeige verwandter Tonarten, paralleler Mollstufen und Modi",
+        "Integrierter Progression-Builder zum Entwurf harmonischer Akkordfolgen"
+      ],
+      challenges: "Nahtlose Synchronisation von interaktiven Vektorgrafiken mit polyphonen Audio-Akkordsynthesen."
+    },
+    en: {
+      description: "Fully interactive digital Circle of Fifths. Built for musicians, composers, and instructors to seamlessly map out chord formulas and musical keys.",
+      highlights: [
+        "Perfect vector rendering layout with interactive harmonic chord soundboards",
+        "Live mapping of parallel major/minor relationships, intervals, and modes",
+        "Built-in chord progression pad to instantly test key modulation paths"
+      ],
+      challenges: "Achieving zero-delay synchronization between rich vector-trigger states and browser audio engines."
     }
   }
 ];
